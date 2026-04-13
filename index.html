@@ -218,6 +218,36 @@
         margin-bottom: 4px;
       }
 
+      .contact-card {
+        margin-top: 26px;
+        padding: 20px 22px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: #f7fbff;
+      }
+
+      .contact-card-title {
+        margin: 0 0 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .contact-item {
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .contact-item a {
+        color: var(--brand);
+        font-weight: 600;
+      }
+
       .section {
         padding: 20px 0 24px;
       }
@@ -304,6 +334,14 @@
         border-color: rgba(255, 255, 255, 0.12);
       }
 
+      .meeting-contact-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+
       .calendly-shell {
         margin-top: 24px;
         border-radius: 22px;
@@ -315,7 +353,7 @@
       }
 
       .footer {
-        padding: 32px 0 52px;
+        padding: 32px 0 88px;
       }
 
       .footer-inner {
@@ -325,6 +363,34 @@
         flex-wrap: wrap;
         color: var(--muted);
         font-size: 0.95rem;
+      }
+
+      .mobile-contact-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: none;
+        align-items: center;
+        justify-content: space-around;
+        gap: 8px;
+        background: rgba(15, 47, 47, 0.97);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 12px 10px calc(12px + env(safe-area-inset-bottom));
+        z-index: 9999;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.18);
+      }
+
+      .mobile-contact-bar a {
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        min-width: 88px;
+        text-align: center;
       }
 
       @media (max-width: 960px) {
@@ -345,6 +411,12 @@
         }
       }
 
+      @media (max-width: 767px) {
+        .mobile-contact-bar {
+          display: flex;
+        }
+      }
+
       @media (max-width: 640px) {
         .container {
           width: min(var(--max), calc(100% - 20px));
@@ -359,12 +431,17 @@
           width: 100%;
         }
 
-        .hero-actions {
+        .hero-actions,
+        .meeting-contact-actions {
           flex-direction: column;
         }
 
         .calendly-shell {
           min-height: 780px;
+        }
+
+        .footer {
+          padding-bottom: 108px;
         }
       }
     </style>
@@ -376,7 +453,13 @@
           <span class="brand-title">LA Menu Guy</span>
           <span class="brand-subtitle">Andre Barber · Restaurant-first platform coming soon</span>
         </div>
-        <a class="nav-cta" href="#book-meeting">Book a 30-minute meeting</a>
+        <a
+          class="nav-cta"
+          href="#book-meeting"
+          onclick="trackContactClick('book_meeting_top_nav')"
+        >
+          Book a 30-minute meeting
+        </a>
       </div>
     </header>
 
@@ -392,9 +475,60 @@
             <p>
               We are starting in Los Angeles. We are starting near major colleges and universities. And we are building with one goal in mind: <strong>help restaurants win back control.</strong>
             </p>
+            <p>
+              <strong>Currently onboarding a limited number of Los Angeles restaurants before our fall launch.</strong>
+            </p>
+
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#book-meeting">Book a 30-minute meeting</a>
-              <a class="btn btn-secondary" href="#what-we-are-building">See what’s coming</a>
+              <a
+                class="btn btn-primary"
+                href="#book-meeting"
+                onclick="trackContactClick('book_meeting_hero')"
+              >
+                Book a 30-minute meeting
+              </a>
+              <a
+                class="btn btn-secondary"
+                href="#what-we-are-building"
+                onclick="trackContactClick('see_whats_coming')"
+              >
+                See what’s coming
+              </a>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-card-title">
+                Want early access or have questions? Reach out directly.
+              </div>
+              <div class="contact-list">
+                <div class="contact-item">
+                  📧 Email:
+                  <a
+                    href="mailto:helloandrebarber@gmail.com"
+                    onclick="trackContactClick('email_hero')"
+                  >
+                    helloandrebarber@gmail.com
+                  </a>
+                </div>
+                <div class="contact-item">
+                  📱 Call or Text:
+                  <a
+                    href="tel:+12137124885"
+                    onclick="trackContactClick('call_hero')"
+                  >
+                    (213) 712-4885
+                  </a>
+                </div>
+                <div class="contact-item">
+                  💬 Text me directly:
+                  <a
+                    href="sms:+12137124885?body=Hi%20Andre%2C%20I%20saw%20LA%20Menu%20Guy%20and%20want%20to%20learn%20more%20about%20getting%20my%20restaurant%20listed."
+                    onclick="trackContactClick('sms_hero')"
+                  >
+                    Send a quick message
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -536,11 +670,35 @@
             If you own, operate, or help run a restaurant in Los Angeles, I’d welcome the chance to meet with you in person for 30 minutes. Use the calendar below to book a time that works for you.
           </p>
 
+          <div class="meeting-contact-actions">
+            <a
+              class="btn btn-secondary"
+              href="tel:+12137124885"
+              onclick="trackContactClick('call_meeting_section')"
+            >
+              Call (213) 712-4885
+            </a>
+            <a
+              class="btn btn-secondary"
+              href="mailto:helloandrebarber@gmail.com"
+              onclick="trackContactClick('email_meeting_section')"
+            >
+              Email Andre
+            </a>
+            <a
+              class="btn btn-secondary"
+              href="sms:+12137124885?body=Hi%20Andre%2C%20I%20want%20to%20learn%20more%20about%20LA%20Menu%20Guy."
+              onclick="trackContactClick('sms_meeting_section')"
+            >
+              Text Andre
+            </a>
+          </div>
+
           <div class="calendly-shell">
             <div
               class="calendly-inline-widget"
               data-url="https://calendly.com/helloandrebarber"
-              style="min-width: 320px; height: 720px"
+              style="min-width: 320px; height: 720px;"
             ></div>
           </div>
         </div>
@@ -552,7 +710,7 @@
           <p class="section-lead">
             I’m building this because too many restaurants are working too hard for too little return while third-party platforms keep taking more. Los Angeles has the restaurant talent, the customer base, and the energy to prove there is a better way.
           </p>
-          <p class="section-lead" style="margin-bottom: 0">
+          <p class="section-lead" style="margin-bottom: 0;">
             I’d like to meet you and show you what’s coming.
           </p>
         </div>
@@ -566,9 +724,47 @@
       </div>
     </footer>
 
+    <div class="mobile-contact-bar" id="mobile-contact-bar">
+      <a
+        href="tel:+12137124885"
+        onclick="trackContactClick('call_mobile_bar')"
+      >
+        📞 Call
+      </a>
+      <a
+        href="sms:+12137124885?body=Hi%20Andre%2C%20I%20want%20to%20get%20my%20restaurant%20listed."
+        onclick="trackContactClick('sms_mobile_bar')"
+      >
+        💬 Text
+      </a>
+      <a
+        href="mailto:helloandrebarber@gmail.com"
+        onclick="trackContactClick('email_mobile_bar')"
+      >
+        ✉️ Email
+      </a>
+    </div>
+
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      function trackContactClick(action) {
+        try {
+          if (typeof window.gtag === "function") {
+            window.gtag("event", action, {
+              event_category: "contact",
+              event_label: action,
+              page_location: window.location.href,
+            });
+          } else {
+            console.log("Tracked click:", action);
+          }
+        } catch (error) {
+          console.warn("Tracking error:", error);
+        }
+      }
     </script>
+
     <script
       type="text/javascript"
       src="https://assets.calendly.com/assets/external/widget.js"
