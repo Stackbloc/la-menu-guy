@@ -1,774 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LA Menu Guy</title>
-    <meta
-      name="description"
-      content="LA Menu Guy helps Los Angeles restaurants market smarter and keep more of their profits."
-    />
-    <style>
-      :root {
-        --bg: #f8f7f3;
-        --surface: #ffffff;
-        --text: #152033;
-        --muted: #5b6472;
-        --line: #dfe3ea;
-        --brand: #123c7a;
-        --brand-dark: #0d2d5c;
-        --accent: #f0b84b;
-        --shadow: 0 16px 40px rgba(17, 24, 39, 0.08);
-        --radius: 22px;
-        --max: 1120px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.6;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .container {
-        width: min(var(--max), calc(100% - 32px));
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        backdrop-filter: blur(12px);
-        background: rgba(248, 247, 243, 0.88);
-        border-bottom: 1px solid rgba(223, 227, 234, 0.8);
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        min-height: 72px;
-      }
-
-      .brand {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .brand-title {
-        font-size: 1.05rem;
-        font-weight: 800;
-        letter-spacing: 0.02em;
-      }
-
-      .brand-subtitle {
-        color: var(--muted);
-        font-size: 0.92rem;
-      }
-
-      .nav-cta {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 999px;
-        background: var(--brand);
-        color: #fff;
-        padding: 12px 18px;
-        font-weight: 700;
-        box-shadow: var(--shadow);
-      }
-
-      .hero {
-        padding: 64px 0 36px;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        gap: 28px;
-        align-items: stretch;
-      }
-
-      .card {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-      }
-
-      .hero-copy {
-        padding: 42px;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 14px;
-        border-radius: 999px;
-        background: #eef4ff;
-        color: var(--brand);
-        font-weight: 700;
-        font-size: 0.92rem;
-        margin-bottom: 20px;
-      }
-
-      h1 {
-        margin: 0 0 16px;
-        font-size: clamp(2.4rem, 5vw, 4.5rem);
-        line-height: 1.02;
-        letter-spacing: -0.04em;
-      }
-
-      .hero-copy p {
-        margin: 0 0 16px;
-        font-size: 1.08rem;
-        color: var(--muted);
-      }
-
-      .hero-copy strong {
-        color: var(--text);
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 28px;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 50px;
-        padding: 0 20px;
-        border-radius: 999px;
-        font-weight: 700;
-        transition: transform 0.15s ease, background 0.15s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn-primary {
-        background: var(--brand);
-        color: #fff;
-      }
-
-      .btn-secondary {
-        border: 1px solid var(--line);
-        background: #fff;
-        color: var(--text);
-      }
-
-      .hero-panel {
-        padding: 32px;
-        background: linear-gradient(180deg, #123c7a, #0f2d58);
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .hero-panel h2 {
-        margin: 0 0 12px;
-        font-size: 1.5rem;
-      }
-
-      .hero-panel p {
-        margin: 0 0 18px;
-        color: rgba(255, 255, 255, 0.86);
-      }
-
-      .stat-list {
-        display: grid;
-        gap: 14px;
-        margin-top: 22px;
-      }
-
-      .stat {
-        padding: 16px 18px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.09);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      .stat strong {
-        display: block;
-        font-size: 1.05rem;
-        margin-bottom: 4px;
-      }
-
-      .contact-card {
-        margin-top: 26px;
-        padding: 20px 22px;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        background: #f7fbff;
-      }
-
-      .contact-card-title {
-        margin: 0 0 12px;
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--text);
-      }
-
-      .contact-list {
-        display: grid;
-        gap: 10px;
-      }
-
-      .contact-item {
-        font-size: 1rem;
-        color: var(--text);
-      }
-
-      .contact-item a {
-        color: var(--brand);
-        font-weight: 600;
-      }
-
-      .section {
-        padding: 20px 0 24px;
-      }
-
-      .section-inner {
-        padding: 36px;
-      }
-
-      h2.section-title {
-        margin: 0 0 10px;
-        font-size: clamp(1.8rem, 3vw, 2.7rem);
-        line-height: 1.08;
-        letter-spacing: -0.03em;
-      }
-
-      .section-lead {
-        margin: 0 0 28px;
-        color: var(--muted);
-        font-size: 1.04rem;
-        max-width: 760px;
-      }
-
-      .grid-2 {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 22px;
-      }
-
-      .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-      }
-
-      .feature,
-      .callout {
-        padding: 26px;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        background: #fff;
-      }
-
-      .feature h3,
-      .callout h3 {
-        margin: 0 0 10px;
-        font-size: 1.15rem;
-      }
-
-      .feature p,
-      .callout p,
-      .callout li {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .callout ul {
-        margin: 14px 0 0;
-        padding-left: 18px;
-      }
-
-      .quote {
-        margin-top: 22px;
-        padding: 22px 24px;
-        border-left: 5px solid var(--accent);
-        background: #fff9ed;
-        border-radius: 16px;
-        font-size: 1.05rem;
-      }
-
-      .cta-band {
-        background: linear-gradient(135deg, #123c7a 0%, #0d2d5c 100%);
-        color: #fff;
-      }
-
-      .cta-band .section-lead,
-      .cta-band .feature p,
-      .cta-band .callout p {
-        color: rgba(255, 255, 255, 0.86);
-      }
-
-      .cta-band .feature,
-      .cta-band .callout {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.12);
-      }
-
-      .meeting-contact-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 0;
-        margin-bottom: 16px;
-      }
-
-      .calendly-shell {
-        margin-top: 24px;
-        border-radius: 22px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        background: #fff;
-        min-height: 720px;
-        box-shadow: var(--shadow);
-      }
-
-      .footer {
-        padding: 32px 0 88px;
-      }
-
-      .footer-inner {
-        display: flex;
-        justify-content: space-between;
-        gap: 18px;
-        flex-wrap: wrap;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      .mobile-contact-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        display: none;
-        align-items: center;
-        justify-content: space-around;
-        gap: 8px;
-        background: rgba(15, 47, 47, 0.97);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 12px 10px calc(12px + env(safe-area-inset-bottom));
-        z-index: 9999;
-        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.18);
-      }
-
-      .mobile-contact-bar a {
-        color: #fff;
-        font-weight: 700;
-        font-size: 0.95rem;
-        text-decoration: none;
-        padding: 8px 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.08);
-        min-width: 88px;
-        text-align: center;
-      }
-
-      @media (max-width: 960px) {
-        .hero-grid,
-        .grid-2,
-        .grid-3 {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-copy,
-        .hero-panel,
-        .section-inner {
-          padding: 26px;
-        }
-
-        .hero {
-          padding-top: 28px;
-        }
-      }
-
-      @media (max-width: 767px) {
-        .mobile-contact-bar {
-          display: flex;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .container {
-          width: min(var(--max), calc(100% - 20px));
-        }
-
-        .nav {
-          min-height: 64px;
-        }
-
-        .nav-cta,
-        .btn {
-          width: 100%;
-        }
-
-        .hero-actions,
-        .meeting-contact-actions {
-          flex-direction: column;
-        }
-
-        .calendly-shell {
-          min-height: 780px;
-        }
-
-        .footer {
-          padding-bottom: 108px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav">
-        <div class="brand">
-          <span class="brand-title">LA Menu Guy</span>
-          <span class="brand-subtitle">Andre Barber · Restaurant-first platform coming soon</span>
-        </div>
-        <a
-          class="nav-cta"
-          href="#book-meeting"
-          onclick="trackContactClick('book_meeting_top_nav')"
-        >
-          Book a 30-minute meeting
-        </a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LA Menu Guy</title>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .cta-btn {
+      background: #1d4ed8;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 16px;
+    }
+
+    .subtext {
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+
+    .benefits {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .panel {
+      background: #1e3a8a;
+      color: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      text-decoration: none;
+      color: #111827;
+      font-weight: 500;
+      background: white;
+    }
+
+    iframe {
+      margin-top: 24px;
+      border: none;
+      width: 100%;
+      height: 700px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <strong>LA Menu Guy</strong><br />
+        <span style="color:#6b7280;">Andre Barber · Restaurant-first platform coming soon</span>
       </div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="card hero-copy">
-            <div class="eyebrow">Los Angeles launch · Starting near major colleges</div>
-            <h1>Helping Los Angeles restaurants market smarter and keep more of their profits.</h1>
-            <p>
-              My name is <strong>Andre Barber</strong>, also known as <strong>LA Menu Guy</strong>. I’m building a new restaurant platform designed to help restaurants get more exposure, give diners better menu insights, and reduce dependence on high-cost third-party apps.
-            </p>
-            <p>
-              We are starting in Los Angeles. We are starting near major colleges and universities. And we are building with one goal in mind: <strong>help restaurants win back control.</strong>
-            </p>
-            <p>
-              <strong>Currently onboarding a limited number of Los Angeles restaurants before our fall launch.</strong>
-            </p>
-
-            <div class="hero-actions">
-              <a
-                class="btn btn-primary"
-                href="#book-meeting"
-                onclick="trackContactClick('book_meeting_hero')"
-              >
-                Book a 30-minute meeting
-              </a>
-              <a
-                class="btn btn-secondary"
-                href="#what-we-are-building"
-                onclick="trackContactClick('see_whats_coming')"
-              >
-                See what’s coming
-              </a>
-            </div>
-
-            <div class="contact-card">
-              <div class="contact-card-title">
-                Want early access or have questions? Reach out directly.
-              </div>
-              <div class="contact-list">
-                <div class="contact-item">
-                  📧 Email:
-                  <a
-                    href="mailto:helloandrebarber@gmail.com"
-                    onclick="trackContactClick('email_hero')"
-                  >
-                    helloandrebarber@gmail.com
-                  </a>
-                </div>
-                <div class="contact-item">
-                  📱 Call or Text:
-                  <a
-                    href="tel:+12137124885"
-                    onclick="trackContactClick('call_hero')"
-                  >
-                    (213) 712-4885
-                  </a>
-                </div>
-                <div class="contact-item">
-                  💬 Text me directly:
-                  <a
-                    href="sms:+12137124885?body=Hi%20Andre%2C%20I%20saw%20LA%20Menu%20Guy%20and%20want%20to%20learn%20more%20about%20getting%20my%20restaurant%20listed."
-                    onclick="trackContactClick('sms_hero')"
-                  >
-                    Send a quick message
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <aside class="card hero-panel">
-            <div>
-              <h2>Why I’m reaching out now</h2>
-              <p>
-                I’m making early introductions with restaurants in Los Angeles before the fall launch. Right now, I’m looking for smart operators who want lower costs, better visibility, and a stronger long-term position.
-              </p>
-            </div>
-
-            <div class="stat-list">
-              <div class="stat">
-                <strong>Free option planned</strong>
-                A path for restaurants to get exposure without paying upfront.
-              </div>
-              <div class="stat">
-                <strong>Lower-cost economics</strong>
-                Subscription pricing and commissions targeted at roughly one-fifth of typical third-party platforms.
-              </div>
-              <div class="stat">
-                <strong>Deeper menu intelligence</strong>
-                Stronger menu-item-level insights designed to attract diners and create engagement.
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card section-inner">
-          <h2 class="section-title">Third-party apps changed the industry — and not for the better.</h2>
-          <p class="section-lead">
-            They created a powerful convenience model: one place where consumers can browse many restaurants, compare options, and order quickly. That shopping-mall effect changed dining forever. But it also came at a steep cost.
-          </p>
-
-          <div class="grid-2">
-            <div class="callout">
-              <h3>What restaurants got</h3>
-              <ul>
-                <li>Higher commission pressure</li>
-                <li>Reduced control over customer relationships</li>
-                <li>More pressure on already thin margins</li>
-                <li>Less ownership over how the business grows</li>
-              </ul>
-            </div>
-            <div class="callout">
-              <h3>What consumers got</h3>
-              <ul>
-                <li>Convenience in one place</li>
-                <li>Easy comparison across restaurants</li>
-                <li>Fast ordering and delivery access</li>
-                <li>But often higher prices built into the system</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="quote">
-            <strong>The restaurant industry helped build the experience. Others captured too much of the value.</strong>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="what-we-are-building">
-        <div class="container card section-inner">
-          <h2 class="section-title">A new platform is coming soon.</h2>
-          <p class="section-lead">
-            We’re launching a new app this fall that expands on the convenience consumers already expect — but with a better model for restaurants.
-          </p>
-
-          <div class="grid-3">
-            <div class="feature">
-              <h3>1. Menu-item-level insights</h3>
-              <p>
-                Diners will get much deeper insight into their food choices, including nutrition intelligence, food-choice context, and smarter discovery tools that go well beyond the industry standard.
-              </p>
-            </div>
-            <div class="feature">
-              <h3>2. Focused LA launch</h3>
-              <p>
-                We are starting near major colleges and universities in Los Angeles because those areas have dense concentrations of tech-savvy users who are more likely to try, share, and engage with a new platform.
-              </p>
-            </div>
-            <div class="feature">
-              <h3>3. Flexible plans</h3>
-              <p>
-                Restaurants will have multiple ways to participate, including a planned <strong>100% free option</strong> for businesses that want visibility without upfront cost.
-              </p>
-            </div>
-            <div class="feature">
-              <h3>4. Lower pricing</h3>
-              <p>
-                The goal is simple: subscription pricing and commission rates at roughly <strong>one-fifth the cost</strong> of typical third-party platforms.
-              </p>
-            </div>
-            <div class="feature">
-              <h3>5. Restaurant-first economics</h3>
-              <p>
-                This is not just another delivery app. It is a restaurant-first model designed to support growth without draining profits.
-              </p>
-            </div>
-            <div class="feature">
-              <h3>6. Local effort, local reset</h3>
-              <p>
-                If we work together, we can help take back control of an industry that has gone off track — starting right here in Los Angeles.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section cta-band">
-        <div class="container card section-inner">
-          <h2 class="section-title">Why meet with me now</h2>
-          <p class="section-lead">
-            I am currently making early introductions with restaurants in Los Angeles. At this stage, I am looking to introduce the concept, learn what matters most to restaurant operators, identify strong early partners, and schedule short in-person meetings.
-          </p>
-          <div class="grid-2">
-            <div class="feature">
-              <h3>Early restaurants help shape the platform</h3>
-              <p>
-                This is still early. That is exactly why now is a good time to talk. Restaurants that engage early will have a chance to influence what gets built and how it serves real operators.
-              </p>
-            </div>
-            <div class="feature">
-              <h3>What we can cover in 30 minutes</h3>
-              <p>
-                How third-party platforms are affecting your business, what diners near colleges actually respond to, how your restaurant could benefit from lower-cost exposure, and what a better restaurant platform should look like.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="book-meeting">
-        <div class="container card section-inner">
-          <h2 class="section-title">Schedule a 30-minute appointment</h2>
-          <p class="section-lead">
-            If you own, operate, or help run a restaurant in Los Angeles, I’d welcome the chance to meet with you in person for 30 minutes. Use the calendar below to book a time that works for you.
-          </p>
-
-          <div class="meeting-contact-actions">
-            <a
-              class="btn btn-secondary"
-              href="tel:+12137124885"
-              onclick="trackContactClick('call_meeting_section')"
-            >
-              Call (213) 712-4885
-            </a>
-            <a
-              class="btn btn-secondary"
-              href="mailto:helloandrebarber@gmail.com"
-              onclick="trackContactClick('email_meeting_section')"
-            >
-              Email Andre
-            </a>
-            <a
-              class="btn btn-secondary"
-              href="sms:+12137124885?body=Hi%20Andre%2C%20I%20want%20to%20learn%20more%20about%20LA%20Menu%20Guy."
-              onclick="trackContactClick('sms_meeting_section')"
-            >
-              Text Andre
-            </a>
-          </div>
-
-          <div class="calendly-shell">
-            <div
-              class="calendly-inline-widget"
-              data-url="https://calendly.com/helloandrebarber"
-              style="min-width: 320px; height: 720px;"
-            ></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card section-inner">
-          <h2 class="section-title">A note from Andre Barber</h2>
-          <p class="section-lead">
-            I’m building this because too many restaurants are working too hard for too little return while third-party platforms keep taking more. Los Angeles has the restaurant talent, the customer base, and the energy to prove there is a better way.
-          </p>
-          <p class="section-lead" style="margin-bottom: 0;">
-            I’d like to meet you and show you what’s coming.
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div>© <span id="year"></span> LA Menu Guy</div>
-        <div>Los Angeles, California · Early restaurant introductions underway</div>
-      </div>
-    </footer>
-
-    <div class="mobile-contact-bar" id="mobile-contact-bar">
-      <a
-        href="tel:+12137124885"
-        onclick="trackContactClick('call_mobile_bar')"
-      >
-        📞 Call
-      </a>
-      <a
-        href="sms:+12137124885?body=Hi%20Andre%2C%20I%20want%20to%20get%20my%20restaurant%20listed."
-        onclick="trackContactClick('sms_mobile_bar')"
-      >
-        💬 Text
-      </a>
-      <a
-        href="mailto:helloandrebarber@gmail.com"
-        onclick="trackContactClick('email_mobile_bar')"
-      >
-        ✉️ Email
+      <a class="cta-btn" href="https://calendly.com/helloandrebarber" target="_blank">
+        Book a 30-minute meeting
       </a>
     </div>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+    <!-- Hero -->
+    <div class="hero">
+      <h1>
+        Helping Los Angeles restaurants market smarter and keep more of their profits.
+      </h1>
 
-      function trackContactClick(action) {
-        try {
-          if (typeof window.gtag === "function") {
-            window.gtag("event", action, {
-              event_category: "contact",
-              event_label: action,
-              page_location: window.location.href,
-            });
-          } else {
-            console.log("Tracked click:", action);
-          }
-        } catch (error) {
-          console.warn("Tracking error:", error);
-        }
-      }
-    </script>
+      <div class="subtext">
+        My name is Andre Barber, also known as LA Menu Guy. I’m building a new restaurant platform designed to help restaurants get more exposure, give diners better menu insights, and reduce dependence on high-cost third-party apps.
+      </div>
 
-    <script
-      type="text/javascript"
-      src="https://assets.calendly.com/assets/external/widget.js"
-      async
-    ></script>
-  </body>
+      <div class="benefits">
+        <strong>What restaurants get with Grubbid:</strong>
+        <ul>
+          <li>✔ Lower commissions than DoorDash & Uber Eats</li>
+          <li>✔ Direct customer relationships</li>
+          <li>✔ Built-in marketing, deals, and visibility tools</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Why Section -->
+    <div class="panel">
+      <h2>Why I’m reaching out now</h2>
+      <p>
+        I’m making early introductions with restaurants in Los Angeles before the fall launch. 
+        I’m looking for operators who want lower costs, better visibility, and a stronger long-term position.
+      </p>
+    </div>
+
+    <!-- Partnership Section -->
+    <div class="section">
+      <h2>This doesn’t have to be all-or-nothing</h2>
+
+      <p>
+        I’m not here to sell you a product just for the sake of selling you a product. I’m here because I genuinely want to build a company that helps restaurants build stronger, more independent businesses. Your success drives my success, and vice versa.
+      </p>
+
+      <p>
+        If you already use third-party apps, there’s no requirement to stop. You can continue using them and use my platform at the same time.
+      </p>
+
+      <p>
+        Here’s the important part: if customers who currently order through high-commission third-party apps begin ordering through my platform instead, your restaurant can start saving up to 22% in commissions on those orders, receive same-day settlement since payments go directly to you, and still access delivery through major third-party networks—without paying their high commission fees.
+      </p>
+    </div>
+
+    <!-- Schedule Section -->
+    <div class="section">
+      <h2>Schedule a 30-minute appointment</h2>
+      <p>
+        If you own or operate a restaurant in Los Angeles, I’d welcome the chance to meet.
+      </p>
+
+      <div class="buttons">
+        <a class="btn" href="tel:12137124885">Call (213) 712-4885</a>
+        <a class="btn" href="mailto:helloandrebarber@gmail.com">Email Andre</a>
+        <a class="btn" href="sms:12137124885">Text Andre</a>
+      </div>
+
+      <iframe src="https://calendly.com/helloandrebarber"></iframe>
+    </div>
+
+  </div>
+</body>
 </html>
