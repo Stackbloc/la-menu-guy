@@ -21,7 +21,6 @@
         --shadow: 0 16px 40px rgba(17, 24, 39, 0.08);
         --radius: 22px;
         --max: 1120px;
-        --read: 760px;
       }
 
       * {
@@ -37,7 +36,7 @@
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         background: var(--bg);
         color: var(--text);
-        line-height: 1.65;
+        line-height: 1.6;
       }
 
       a {
@@ -47,11 +46,6 @@
 
       .container {
         width: min(var(--max), calc(100% - 32px));
-        margin: 0 auto;
-      }
-
-      .read-container {
-        width: min(var(--read), calc(100% - 32px));
         margin: 0 auto;
       }
 
@@ -99,11 +93,21 @@
         padding: 12px 18px;
         font-weight: 700;
         box-shadow: var(--shadow);
-        white-space: nowrap;
       }
 
       .hero {
-        padding: 62px 0 20px;
+        padding: 64px 0 30px;
+      }
+
+      .hero-single {
+        max-width: 820px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
       }
 
       .hero-copy {
@@ -124,14 +128,14 @@
       }
 
       h1 {
-        margin: 0 0 18px;
-        font-size: clamp(2.25rem, 5vw, 4.25rem);
-        line-height: 1.04;
+        margin: 0 0 16px;
+        font-size: clamp(2.4rem, 5vw, 4.5rem);
+        line-height: 1.02;
         letter-spacing: -0.04em;
       }
 
       .hero-copy p {
-        margin: 0 0 14px;
+        margin: 0 0 16px;
         font-size: 1.08rem;
         color: var(--muted);
       }
@@ -140,11 +144,37 @@
         color: var(--text);
       }
 
-      .card {
-        background: var(--surface);
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        padding: 0 20px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .btn-secondary {
         border: 1px solid var(--line);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
+        background: #fff;
+        color: var(--text);
       }
 
       .section {
@@ -156,62 +186,44 @@
       }
 
       h2.section-title {
-        margin: 0 0 12px;
-        font-size: clamp(1.75rem, 3vw, 2.6rem);
+        margin: 0 0 10px;
+        font-size: clamp(1.8rem, 3vw, 2.7rem);
         line-height: 1.08;
         letter-spacing: -0.03em;
       }
 
       .section-lead {
-        margin: 0 0 22px;
+        margin: 0 0 28px;
         color: var(--muted);
         font-size: 1.04rem;
         max-width: 760px;
       }
 
-      .principles-list {
-        display: grid;
-        gap: 22px;
-        margin-top: 6px;
-      }
-
       .principle {
-        padding-top: 22px;
+        padding: 24px 0;
         border-top: 1px solid var(--line);
       }
 
-      .principle:first-child {
-        padding-top: 0;
+      .principle:first-of-type {
         border-top: 0;
+        padding-top: 10px;
       }
 
       .principle h3 {
         margin: 0 0 12px;
-        font-size: clamp(1.18rem, 2vw, 1.42rem);
+        font-size: clamp(1.15rem, 2.4vw, 1.45rem);
         line-height: 1.25;
-        letter-spacing: -0.015em;
-      }
-
-      .principle h3 strong {
-        font-weight: 850;
       }
 
       .principle p {
         margin: 0 0 12px;
         color: var(--muted);
-        font-size: 1.02rem;
       }
 
-      .principle ul,
-      .callout ul {
-        margin: 10px 0 14px;
+      .principle ul {
+        margin: 10px 0 12px;
         padding-left: 20px;
         color: var(--muted);
-      }
-
-      .principle li,
-      .callout li {
-        margin: 5px 0;
       }
 
       .grid-2 {
@@ -243,12 +255,19 @@
       .feature p,
       .callout p,
       .callout li {
+        margin: 0;
         color: var(--muted);
       }
 
-      .feature p,
-      .callout p {
-        margin: 0 0 10px;
+      .feature ul {
+        margin: 14px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .callout ul {
+        margin: 14px 0 0;
+        padding-left: 18px;
       }
 
       .quote {
@@ -266,32 +285,6 @@
         gap: 14px;
         margin-top: 0;
         margin-bottom: 16px;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 50px;
-        padding: 0 20px;
-        border-radius: 999px;
-        font-weight: 700;
-        transition: transform 0.15s ease, background 0.15s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn-primary {
-        background: var(--brand);
-        color: #fff;
-      }
-
-      .btn-secondary {
-        border: 1px solid var(--line);
-        background: #fff;
-        color: var(--text);
       }
 
       .footnote {
@@ -363,8 +356,7 @@
       }
 
       @media (max-width: 640px) {
-        .container,
-        .read-container {
+        .container {
           width: min(var(--max), calc(100% - 20px));
         }
 
@@ -372,21 +364,14 @@
           min-height: 64px;
         }
 
-        .brand-subtitle {
-          display: none;
-        }
-
         .nav-cta,
         .btn {
           width: 100%;
         }
 
+        .hero-actions,
         .meeting-contact-actions {
           flex-direction: column;
-        }
-
-        .principle h3 {
-          font-size: 1.15rem;
         }
 
         .footer {
@@ -414,88 +399,98 @@
 
     <main>
       <section class="hero">
-        <div class="read-container card hero-copy">
-          <div class="eyebrow">LA Menu Guy · Los Angeles</div>
-          <h1>5 Principles Every Restaurant Owner Should Live By</h1>
-          <p>
-            Whether you are a new restaurant owner or an experienced operator, the five principles below will serve you well.
-          </p>
-          <p>
-            These principles aren’t new. They reflect how strong restaurants actually succeed when they have control over their business.
-          </p>
+        <div class="container hero-single">
+          <div class="card hero-copy">
+            <div class="eyebrow">Los Angeles launch · Starting near major colleges</div>
+            <h1>5 Principles Every Restaurant Owner Should Live By</h1>
+            <p><strong>For operators who want control, better margins, and long-term growth.</strong></p>
+            <p>
+              Whether you are a new restaurant owner or an experienced operator, the five principles below will serve you well.
+            </p>
+            <p>
+              These principles aren’t new. They reflect how strong restaurants actually succeed when they have control over their business.
+            </p>
+          </div>
         </div>
       </section>
 
       <section class="section">
-        <div class="read-container card section-inner">
-          <div class="principles-list">
-            <article class="principle">
-              <h3>1. <strong>Never blindly hand control of your business to a third party—especially one that decides how much of your revenue it keeps.</strong></h3>
-              <p>
-                Allowing powerful, expensive third-party apps to control your business is a fundamentally flawed way to operate.
-              </p>
-              <p>As things exist now, they determine:</p>
-              <ul>
-                <li>how customers find you</li>
-                <li>how your menu is shown</li>
-                <li>how much you earn from each order</li>
-              </ul>
-              <p>
-                You must be the steward of your own ship. Good stewards embrace options that preserve operational control.
-              </p>
-            </article>
-
-            <article class="principle">
-              <h3>2. <strong>Better value and higher margins drive success—not higher prices.</strong></h3>
-              <p>
-                Better value and healthier margins create repeat demand more reliably than raising prices to absorb high commissions.
-              </p>
-              <p>
-                Raising prices to offset high commissions reduces demand. Customers order less, switch options, or stop ordering altogether.
-              </p>
-              <p>
-                Studies show that even modest price increases lead to measurable drops in restaurant demand—for example, a 5% increase in price can reduce demand by roughly 7–10%.<sup>[1]</sup>
-              </p>
-              <p>
-                Hoping customers will continue covering these costs is not a strategy.
-              </p>
-            </article>
-
-            <article class="principle">
-              <h3>3. <strong>You don’t need to conquer the world. Conquer your local community.</strong></h3>
-              <p>Local traction matters.</p>
-              <p>
-                Strong restaurants win close to home by serving nearby customers who come back again and again.
-              </p>
-              <p>
-                Broad exposure means little if it doesn’t convert into repeat local demand.
-              </p>
-            </article>
-
-            <article class="principle">
-              <h3>4. <strong>Your menu is your first—and often only chance to make a good impression.</strong></h3>
-              <p>
-                If your menu is unclear, hard to navigate, or incomplete, customers hesitate—or move on.
-              </p>
-              <p>Clear, structured menus help customers:</p>
-              <ul>
-                <li>decide faster</li>
-                <li>order with confidence</li>
-              </ul>
-            </article>
-
-            <article class="principle">
-              <h3>5. <strong>Satisfied customers are your greatest promotional ally.</strong></h3>
-              <p>The most reliable growth comes from:</p>
-              <ul>
-                <li>repeat customers</li>
-                <li>word-of-mouth</li>
-              </ul>
-              <p>
-                When customers consistently get good value and a smooth experience, they return—and they share their experience with others.
-              </p>
-            </article>
+        <div class="container card section-inner">
+          <div class="principle">
+            <h3>1. <em>Never blindly hand control of your business to a third party—especially one with the power to decide how much of your revenue it keeps.</em></h3>
+            <p>
+              Allowing powerful, expensive third-party apps to control your business is a fundamentally flawed way to operate.
+            </p>
+            <p>As things exist now, they determine:</p>
+            <ul>
+              <li>how customers find you</li>
+              <li>how your menu is shown</li>
+              <li>how much you earn from each order—and when those funds reach your bank account</li>
+            </ul>
+            <p>
+              You must be the steward of your own ship. Good stewards embrace options that preserve operational control.
+            </p>
           </div>
+
+          <div class="principle">
+            <h3>2. <em>Better value and higher margins drive success—not higher prices.</em></h3>
+            <p>
+              Better value and healthier margins create repeat demand more reliably than raising prices to absorb high commissions.
+            </p>
+            <p>
+              Raising prices to offset high commissions reduces demand. Customers order less, switch options, or stop ordering altogether.
+            </p>
+            <p>
+              Even modest increases matter: a 5% price increase can reduce demand by roughly 7–10%.[1]
+            </p>
+            <p>
+              Hoping customers will continue covering these costs is not a strategy.
+            </p>
+          </div>
+
+          <div class="principle">
+            <h3>3. <em>You don’t need to conquer the world. Conquer your local community.</em></h3>
+            <p>
+              Local traction matters. Strong restaurants win close to home by serving nearby customers who come back again and again.
+            </p>
+            <p>
+              Consistent business comes from nearby customers who order repeatedly. Broad exposure means little if it doesn’t convert into local, repeat demand.
+            </p>
+          </div>
+
+          <div class="principle">
+            <h3>4. <em>Your menu should help customers decide quickly and confidently.</em></h3>
+            <p>
+              If your menu is unclear, hard to navigate, or incomplete, customers hesitate—or choose something else.
+            </p>
+            <p>
+              A well-structured menu reduces friction, improves understanding, and leads to more confident decisions.
+            </p>
+          </div>
+
+          <div class="principle">
+            <h3>5. <em>Satisfied customers are your greatest promotional ally.</em></h3>
+            <p>The most reliable growth comes from:</p>
+            <ul>
+              <li>repeat customers</li>
+              <li>word-of-mouth</li>
+            </ul>
+            <p>
+              When customers consistently get good value and a smooth experience, they return—and they share their experience with others.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card section-inner">
+          <h2 class="section-title">Menus are the foundation.</h2>
+          <p class="section-lead">
+            Your menu is not just a list of items. It is how customers understand your food, decide what to order, and decide whether to come back.
+          </p>
+          <p class="section-lead" style="margin-bottom: 0;">
+            Menus should be structured, searchable, clear, and powerful—not trapped inside third-party apps that control how they are displayed and used.
+          </p>
         </div>
       </section>
 
@@ -503,10 +498,16 @@
         <div class="container card section-inner">
           <h2 class="section-title">The Problem with the Current System</h2>
           <p class="section-lead">
-            The current system is dominated by powerful third-party platforms that control how customers find restaurants, how menus are presented, and how revenue is distributed. While doing this, they restrict access to customer data—preventing restaurants from ever communicating directly or building lasting customer relationships.
+            The current system is dominated by powerful third-party platforms that control how customers find restaurants, how menus are presented, and how revenue is distributed.
           </p>
           <p class="section-lead">
-            Third-party platforms charge restaurants up to <strong>30% per order</strong>. On top of that, customers absorb fees and markups of up to <strong>15%</strong>. Add it up: as much as <strong>45 cents of every dollar</strong> in a transaction is being extracted—from both sides simultaneously.
+            While doing this, they restrict access to customer data—preventing restaurants from ever communicating directly or building lasting customer relationships.
+          </p>
+          <p class="section-lead">
+            Third-party platforms charge restaurants up to <strong>30% per order</strong>. On top of that, customers absorb fees and markups of up to <strong>15%</strong>.
+          </p>
+          <p class="section-lead">
+            Add it up: as much as <strong>45 cents of every dollar</strong> in a transaction is being extracted—from both sides simultaneously.
           </p>
           <p class="section-lead">
             And to top it off, they decide when you get paid—holding onto and investing your hard-earned revenue before transmitting it to you.
@@ -515,27 +516,25 @@
           <div class="quote">
             <strong>45% of the pie is not just greedy—it’s abusive.</strong>
           </div>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="container grid-2">
-          <div class="callout">
-            <h3>What restaurants lose</h3>
-            <ul>
-              <li>Up to 30% commission on every order</li>
-              <li>Margin that could go to better food, staff, or growth</li>
-              <li>The ability to build customer relationships and promote their own deals directly to their customers</li>
-              <li>Control over when they receive money they have already earned</li>
-            </ul>
-          </div>
-          <div class="callout">
-            <h3>How this impacts customers</h3>
-            <ul>
-              <li>Pay up to <strong>45% more</strong> before service fees, taxes, tips, and delivery fees</li>
-              <li>Forced to seek alternatives, including dining out less frequently or cooking at home</li>
-              <li><strong>Net effect: customers pay far more—and receive far less in value.</strong></li>
-            </ul>
+          <div class="grid-2" style="margin-top: 22px;">
+            <div class="callout">
+              <h3>What restaurants lose</h3>
+              <ul>
+                <li>Up to 30% commission on every order</li>
+                <li>Margin that could go to better food, staff, or growth</li>
+                <li>The ability to build customer relationships and promote their own deals directly</li>
+                <li>Control over when they receive money they have already earned</li>
+              </ul>
+            </div>
+            <div class="callout">
+              <h3>How this impacts customers</h3>
+              <ul>
+                <li>Pay up to 45% more before service fees, taxes, tips, and delivery fees</li>
+                <li>Forced to seek alternatives, including dining out less or cooking at home</li>
+                <li><strong>Net effect: customers pay far more—and receive far less in value.</strong></li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -546,29 +545,75 @@
           <p class="section-lead">
             Introducing a new platform built for the benefit of restaurants and their customers.
           </p>
+          <p class="section-lead">
+            We are a new, scrappy platform entering the marketplace—and we are not here to control your business.
+          </p>
+          <p class="section-lead">
+            Our goal is to tilt the balance of power back in your favor by giving you a lower-cost option you can use alongside third-party apps or as an alternative.
+          </p>
+          <p class="section-lead">
+            More options create real competition—and competition works for you.
+          </p>
 
-          <div class="grid-3">
+          <h2 class="section-title" style="margin-top: 30px;">Built around these principles</h2>
+
+          <div class="grid-2" style="margin-top: 22px;">
             <div class="feature">
-              <h3>You keep your sales proceeds</h3>
-              <p>
-                We never hold your money. What you earn moves to you—not through us first.
-              </p>
+              <h3>1. Control.</h3>
+              <p><strong>You stay in control of your business.</strong></p>
+              <ul>
+                <li>You keep drastically more from each order</li>
+                <li>Your revenue flows directly to your bank account—we do not hold your money</li>
+                <li>You decide how to use the platform—and can use it alongside your existing third-party platforms</li>
+              </ul>
             </div>
+
             <div class="feature">
-              <h3>Your own direct ecosystem</h3>
-              <p>
-                Promote deals and engage directly with your customers—without paying additional fees to do so.
-              </p>
+              <h3>2. Value &amp; Margins.</h3>
+              <p><strong>Better economics by design.</strong></p>
+              <p>Replace artificially inflated prices with real prices—and give that value back to your customers.</p>
+              <ul>
+                <li>Reduce your in-app prices by up to <strong>20%</strong> while maintaining your margins</li>
+                <li>Eliminate the ~<strong>15%</strong> surcharge customers pay on third-party apps</li>
+                <li>Continue fulfilling orders through third-party delivery networks—while paying only a delivery fee, which can be passed to the customer</li>
+              </ul>
             </div>
+
             <div class="feature">
-              <h3>Replace artificially inflated prices with real prices</h3>
-              <p>
-                Reduce your inflated prices by up to <strong>22%</strong> while maintaining your normal margins.
-              </p>
-              <p>
-                Your customers save up to an additional <strong>15%</strong> on top of that.
-              </p>
-              <p><strong>That is real savings. Compelling.</strong></p>
+              <h3>3. Local.</h3>
+              <p><strong>Win where your business actually wins.</strong></p>
+              <p>Yes, we are a local upstart—and we do not have national coverage.</p>
+              <p>But the reality is this: most of your customers already live and work nearby.</p>
+              <ul>
+                <li>The typical diner travels only about 3 miles for a meal</li>
+                <li>Roughly 85% of a restaurant’s customers come from within a 3–5 mile radius</li>
+              </ul>
+              <p>That is why we are focused on your local community—delivering immediate, meaningful impact where it actually matters.</p>
+              <p><strong>Win locally, and you win what matters.</strong></p>
+            </div>
+
+            <div class="feature">
+              <h3>4. Menu.</h3>
+              <p><strong>Your menu works the way it should.</strong></p>
+              <p>We present your menu in a structured format that preserves your brand identity while making it easier for customers to understand what you offer.</p>
+              <p><strong>Your menu is enhanced with intelligence that helps customers understand, compare, and choose with confidence.</strong></p>
+              <ul>
+                <li>Structured, searchable menu presentation</li>
+                <li>Clear organization and item visibility</li>
+                <li>Designed to help customers decide quickly and confidently</li>
+              </ul>
+            </div>
+
+            <div class="feature">
+              <h3>5. Customer Promotion &amp; Engagement.</h3>
+              <p><strong>Turn your customers into promoters—and own the relationship.</strong></p>
+              <p>Your customers can follow you on the platform and stay directly connected to your business.</p>
+              <ul>
+                <li>Your followers automatically receive your deals and updates</li>
+                <li>Promote offers and announcements directly—without additional fees</li>
+                <li>Customers can easily share your menu and deals with their friends—directly from our app</li>
+              </ul>
+              <p>Repeat, local, satisfied customers become your most effective form of promotion.</p>
             </div>
           </div>
         </div>
@@ -578,9 +623,12 @@
         <div class="container card section-inner">
           <h2 class="section-title">Start local. Win what matters.</h2>
           <p class="section-lead">
-            While we’re not launching at a national scale, we’re starting where it matters—your community. We will market the platform locally, with a strong focus on areas in and around college campuses.
+            While we’re not launching at a national scale, we’re starting where it matters—your community.
           </p>
-          <p class="section-lead" style="margin-bottom:0;">
+          <p class="section-lead">
+            We will market the platform locally, with a strong focus on areas in and around college campuses.
+          </p>
+          <p class="section-lead" style="margin-bottom: 0;">
             <strong>Win locally, and you win what matters.</strong>
           </p>
         </div>
@@ -638,9 +686,11 @@
       </section>
 
       <section class="section">
-        <div class="read-container card section-inner footnote">
-          <p style="margin:0;">
-            <strong>[1]</strong> Andreyeva, Tatiana; Long, Michael W.; Brownell, Kelly D. <em>The Impact of Food Prices on Consumption: A Systematic Review of Research on the Price Elasticity of Demand for Food.</em> American Journal of Public Health, 2010.
+        <div class="container card section-inner footnote">
+          <p style="margin: 0;">
+            <strong>[1]</strong> Andreyeva, Tatiana; Long, Michael W.; Brownell, Kelly D.
+            <em>The Impact of Food Prices on Consumption: A Systematic Review of Research on the Price Elasticity of Demand for Food.</em>
+            American Journal of Public Health, 2010.
           </p>
         </div>
       </section>
