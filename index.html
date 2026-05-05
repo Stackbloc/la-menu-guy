@@ -44,6 +44,10 @@
         text-decoration: none;
       }
 
+      button {
+        font: inherit;
+      }
+
       .container {
         width: min(var(--max), calc(100% - 32px));
         margin: 0 auto;
@@ -81,6 +85,40 @@
       .brand-subtitle {
         color: var(--muted);
         font-size: 0.92rem;
+      }
+
+      .header-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+      }
+
+      .language-switcher {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .language-button {
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .language-button.active {
+        color: var(--brand);
+        font-weight: 700;
+      }
+
+      .language-separator {
+        color: #a0a8b4;
       }
 
       .nav-cta {
@@ -232,12 +270,6 @@
         gap: 22px;
       }
 
-      .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-      }
-
       .feature,
       .callout {
         padding: 26px;
@@ -334,8 +366,7 @@
       }
 
       @media (max-width: 960px) {
-        .grid-2,
-        .grid-3 {
+        .grid-2 {
           grid-template-columns: 1fr;
         }
 
@@ -362,6 +393,17 @@
 
         .nav {
           min-height: 64px;
+          align-items: flex-start;
+          padding: 14px 0;
+        }
+
+        .header-actions {
+          width: 100%;
+          align-items: stretch;
+        }
+
+        .language-switcher {
+          justify-content: flex-start;
         }
 
         .nav-cta,
@@ -381,351 +423,772 @@
     </style>
   </head>
   <body>
-    <header class="site-header">
-      <div class="container nav">
-        <div class="brand">
-          <span class="brand-title">LA Menu Guy</span>
-          <span class="brand-subtitle">Andre Barber · Los Angeles</span>
-        </div>
-        <a
-          class="nav-cta"
-          href="#book-meeting"
-          onclick="trackContactClick('book_meeting_top_nav')"
-        >
-          Book a 30-minute meeting
-        </a>
-      </div>
-    </header>
+    <div id="root"></div>
 
-    <main>
-      <section class="hero">
-        <div class="container hero-single">
-          <div class="card hero-copy">
-            <div class="eyebrow">Los Angeles launch · Starting near major colleges</div>
-            <h1>5 Principles Every Restaurant Owner Should Live By</h1>
-            <p><strong>For operators who want control, better margins, and long-term growth.</strong></p>
-            <p>
-              Whether you are a new restaurant owner or an experienced operator, the five principles below will serve you well.
-            </p>
-            <p>
-              These principles aren’t new. They reflect how strong restaurants actually succeed when they have control over their business.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card section-inner">
-          <div class="principle">
-            <h3>1. <em>Never blindly hand control of your business to a third party—especially one with the power to decide how much of your revenue it keeps.</em></h3>
-            <p>
-              Allowing powerful, expensive third-party apps to control your business is a fundamentally flawed way to operate.
-            </p>
-            <p>As things exist now, they determine:</p>
-            <ul>
-              <li>how customers find you</li>
-              <li>how your menu is shown</li>
-              <li>how much you earn from each order—and when those funds reach your bank account</li>
-            </ul>
-            <p>
-              You must be the steward of your own ship. Good stewards embrace options that preserve operational control.
-            </p>
-          </div>
-
-          <div class="principle">
-            <h3>2. <em>Better value and higher margins drive success—not higher prices.</em></h3>
-            <p>
-              Better value and healthier margins create repeat demand more reliably than raising prices to absorb high commissions.
-            </p>
-            <p>
-              Raising prices to offset high commissions reduces demand. Customers order less, switch options, or stop ordering altogether.
-            </p>
-            <p>
-              Even modest increases matter: a 5% price increase can reduce demand by roughly 7–10%.[1]
-            </p>
-            <p>
-              Hoping customers will continue covering these costs is not a strategy.
-            </p>
-          </div>
-
-          <div class="principle">
-            <h3>3. <em>You don’t need to conquer the world. Conquer your local community.</em></h3>
-            <p>
-              Local traction matters. Strong restaurants win close to home by serving nearby customers who come back again and again.
-            </p>
-            <p>
-              Consistent business comes from nearby customers who order repeatedly. Broad exposure means little if it doesn’t convert into local, repeat demand.
-            </p>
-          </div>
-
-          <div class="principle">
-            <h3>4. <em>Your menu should help customers decide quickly and confidently.</em></h3>
-            <p>
-              If your menu is unclear, hard to navigate, or incomplete, customers hesitate—or choose something else.
-            </p>
-            <p>
-              A well-structured menu reduces friction, improves understanding, and leads to more confident decisions.
-            </p>
-          </div>
-
-          <div class="principle">
-            <h3>5. <em>Satisfied customers are your greatest promotional ally.</em></h3>
-            <p>The most reliable growth comes from:</p>
-            <ul>
-              <li>repeat customers</li>
-              <li>word-of-mouth</li>
-            </ul>
-            <p>
-              When customers consistently get good value and a smooth experience, they return—and they share their experience with others.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card section-inner">
-          <h2 class="section-title">Menus are the foundation.</h2>
-          <p class="section-lead">
-            Your menu is not just a list of items. It is how customers understand your food, decide what to order, and decide whether to come back.
-          </p>
-          <p class="section-lead" style="margin-bottom: 0;">
-            Menus should be structured, searchable, clear, and powerful—not trapped inside third-party apps that control how they are displayed and used.
-          </p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card section-inner">
-          <h2 class="section-title">The Problem with the Current System</h2>
-          <p class="section-lead">
-            The current system is dominated by powerful third-party platforms that control how customers find restaurants, how menus are presented, and how revenue is distributed.
-          </p>
-          <p class="section-lead">
-            While doing this, they restrict access to customer data—preventing restaurants from ever communicating directly or building lasting customer relationships.
-          </p>
-          <p class="section-lead">
-            Third-party platforms charge restaurants up to <strong>30% per order</strong>. On top of that, customers absorb fees and markups of up to <strong>15%</strong>.
-          </p>
-          <p class="section-lead">
-            Add it up: as much as <strong>45 cents of every dollar</strong> in a transaction is being extracted—from both sides simultaneously.
-          </p>
-          <p class="section-lead">
-            And to top it off, they decide when you get paid—holding onto and investing your hard-earned revenue before transmitting it to you.
-          </p>
-
-          <div class="quote">
-            <strong>45% of the pie is not just greedy—it’s abusive.</strong>
-          </div>
-
-          <div class="grid-2" style="margin-top: 22px;">
-            <div class="callout">
-              <h3>What restaurants lose</h3>
-              <ul>
-                <li>Up to 30% commission on every order</li>
-                <li>Margin that could go to better food, staff, or growth</li>
-                <li>The ability to build customer relationships and promote their own deals directly</li>
-                <li>Control over when they receive money they have already earned</li>
-              </ul>
-            </div>
-            <div class="callout">
-              <h3>How this impacts customers</h3>
-              <ul>
-                <li>Pay up to 45% more before service fees, taxes, tips, and delivery fees</li>
-                <li>Forced to seek alternatives, including dining out less or cooking at home</li>
-                <li><strong>Net effect: customers pay far more—and receive far less in value.</strong></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="what-we-are-building">
-        <div class="container card section-inner">
-          <h2 class="section-title">There is a better way.</h2>
-          <p class="section-lead">
-            Introducing a new platform built for the benefit of restaurants and their customers.
-          </p>
-          <p class="section-lead">
-            We are a new, scrappy platform entering the marketplace—and we are not here to control your business.
-          </p>
-          <p class="section-lead">
-            Our goal is to tilt the balance of power back in your favor by giving you a lower-cost option you can use alongside third-party apps or as an alternative.
-          </p>
-          <p class="section-lead">
-            More options create real competition—and competition works for you.
-          </p>
-
-          <h2 class="section-title" style="margin-top: 30px;">Built around these principles</h2>
-
-          <div class="grid-2" style="margin-top: 22px;">
-            <div class="feature">
-              <h3>1. Control.</h3>
-              <p><strong>You stay in control of your business.</strong></p>
-              <ul>
-                <li>You keep drastically more from each order</li>
-                <li>Your revenue flows directly to your bank account—we do not hold your money</li>
-                <li>You decide how to use the platform—and can use it alongside your existing third-party platforms</li>
-              </ul>
-            </div>
-
-            <div class="feature">
-              <h3>2. Value &amp; Margins.</h3>
-              <p><strong>Better economics by design.</strong></p>
-              <p>Replace artificially inflated prices with real prices—and give that value back to your customers.</p>
-              <ul>
-                <li>Reduce your in-app prices by up to <strong>20%</strong> while maintaining your margins</li>
-                <li>Eliminate the ~<strong>15%</strong> surcharge customers pay on third-party apps</li>
-                <li>Continue fulfilling orders through third-party delivery networks—while paying only a delivery fee, which can be passed to the customer</li>
-              </ul>
-            </div>
-
-            <div class="feature">
-              <h3>3. Local.</h3>
-              <p><strong>Win where your business actually wins.</strong></p>
-              <p>Yes, we are a local upstart—and we do not have national coverage.</p>
-              <p>But the reality is this: most of your customers already live and work nearby.</p>
-              <ul>
-                <li>The typical diner travels only about 3 miles for a meal</li>
-                <li>Roughly 85% of a restaurant’s customers come from within a 3–5 mile radius</li>
-              </ul>
-              <p>That is why we are focused on your local community—delivering immediate, meaningful impact where it actually matters.</p>
-              <p><strong>Win locally, and you win what matters.</strong></p>
-            </div>
-
-            <div class="feature">
-              <h3>4. Menu.</h3>
-              <p><strong>Your menu works the way it should.</strong></p>
-              <p>We present your menu in a structured format that preserves your brand identity while making it easier for customers to understand what you offer.</p>
-              <p><strong>Your menu is enhanced with intelligence that helps customers understand, compare, and choose with confidence.</strong></p>
-              <ul>
-                <li>Structured, searchable menu presentation</li>
-                <li>Clear organization and item visibility</li>
-                <li>Designed to help customers decide quickly and confidently</li>
-              </ul>
-            </div>
-
-            <div class="feature">
-              <h3>5. Customer Promotion &amp; Engagement.</h3>
-              <p><strong>Turn your customers into promoters—and own the relationship.</strong></p>
-              <p>Your customers can follow you on the platform and stay directly connected to your business.</p>
-              <ul>
-                <li>Your followers automatically receive your deals and updates</li>
-                <li>Promote offers and announcements directly—without additional fees</li>
-                <li>Customers can easily share your menu and deals with their friends—directly from our app</li>
-              </ul>
-              <p>Repeat, local, satisfied customers become your most effective form of promotion.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card section-inner">
-          <h2 class="section-title">Start local. Win what matters.</h2>
-          <p class="section-lead">
-            While we’re not launching at a national scale, we’re starting where it matters—your community.
-          </p>
-          <p class="section-lead">
-            We will market the platform locally, with a strong focus on areas in and around college campuses.
-          </p>
-          <p class="section-lead" style="margin-bottom: 0;">
-            <strong>Win locally, and you win what matters.</strong>
-          </p>
-        </div>
-      </section>
-
-      <section class="section" id="book-meeting">
-        <div class="container card section-inner">
-          <h2 class="section-title">Join us and take back control of your restaurant.</h2>
-          <p class="section-lead">
-            Call, text, or email—whatever works for you. I’ll come to you.
-          </p>
-
-          <div class="meeting-contact-actions">
-            <a
-              class="btn btn-primary"
-              href="tel:+12137124885"
-              onclick="trackContactClick('call_meeting_section')"
-            >
-              Call (213) 712-4885
-            </a>
-            <a
-              class="btn btn-secondary"
-              href="sms:+12137124885?body=Hi%20Andre%2C%20I%20want%20to%20learn%20more."
-              onclick="trackContactClick('sms_meeting_section')"
-            >
-              Text Andre
-            </a>
-            <a
-              class="btn btn-secondary"
-              href="mailto:helloandrebarber@gmail.com"
-              onclick="trackContactClick('email_meeting_section')"
-            >
-              Email Andre
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card section-inner">
-          <h2 class="section-title">A note from Andre Barber</h2>
-          <p class="section-lead">
-            I’m building a platform designed to give restaurants back control, protect their margins, and restore direct relationships with their customers.
-          </p>
-          <p class="section-lead">
-            Too many restaurants are working too hard while a 45% tax on every transaction quietly bleeds the industry dry.
-          </p>
-          <p class="section-lead">
-            Los Angeles has the talent, the culture, and the customer base to prove there’s a better way—but it starts with restaurants deciding to stop subsidizing a system that was never built for them.
-          </p>
-          <p class="section-lead" style="margin-bottom: 0;">
-            I’d like to meet you and show you what’s coming.
-          </p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container card section-inner footnote">
-          <p style="margin: 0;">
-            <strong>[1]</strong> Andreyeva, Tatiana; Long, Michael W.; Brownell, Kelly D.
-            <em>The Impact of Food Prices on Consumption: A Systematic Review of Research on the Price Elasticity of Demand for Food.</em>
-            American Journal of Public Health, 2010.
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div>© <span id="year"></span> LA Menu Guy</div>
-        <div>Los Angeles, California · Early restaurant introductions underway</div>
-      </div>
-    </footer>
-
-    <div class="mobile-contact-bar" id="mobile-contact-bar">
-      <a
-        href="tel:+12137124885"
-        onclick="trackContactClick('call_mobile_bar')"
-      >
-        📞 Call
-      </a>
-      <a
-        href="sms:+12137124885?body=Hi%20Andre%2C%20I%20want%20to%20get%20my%20restaurant%20listed."
-        onclick="trackContactClick('sms_mobile_bar')"
-      >
-        💬 Text
-      </a>
-      <a
-        href="mailto:helloandrebarber@gmail.com"
-        onclick="trackContactClick('email_mobile_bar')"
-      >
-        ✉️ Email
-      </a>
-    </div>
-
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const translations = {
+        en: {
+          htmlLang: "en",
+          navSubtitle: "Andre Barber · Los Angeles",
+          navCta: "Book a 30-minute meeting",
+          languages: {
+            en: "English",
+            es: "Español",
+            zh: "中文",
+            ko: "한국어",
+          },
+          eyebrow: "Los Angeles launch · Starting near major colleges",
+          heroTitle: "5 Principles Every Restaurant Owner Should Live By",
+          heroStrong: "For operators who want control, better margins, and long-term growth.",
+          heroParagraphs: [
+            "Whether you are a new restaurant owner or an experienced operator, the five principles below will serve you well.",
+            "These principles aren't new. They reflect how strong restaurants actually succeed when they have control over their business.",
+          ],
+          principles: [
+            {
+              number: "1.",
+              title:
+                "Never blindly hand control of your business to a third party, especially one with the power to decide how much of your revenue it keeps.",
+              paragraphs: [
+                "Allowing powerful, expensive third-party apps to control your business is a fundamentally flawed way to operate.",
+                "As things exist now, they determine:",
+                "You must be the steward of your own ship. Good stewards embrace options that preserve operational control.",
+              ],
+              bullets: [
+                "how customers find you",
+                "how your menu is shown",
+                "how much you earn from each order and when those funds reach your bank account",
+              ],
+            },
+            {
+              number: "2.",
+              title: "Better value and higher margins drive success, not higher prices.",
+              paragraphs: [
+                "Better value and healthier margins create repeat demand more reliably than raising prices to absorb high commissions.",
+                "Raising prices to offset high commissions reduces demand. Customers order less, switch options, or stop ordering altogether.",
+                "Even modest increases matter: a 5% price increase can reduce demand by roughly 7–10%.[1]",
+                "Hoping customers will continue covering these costs is not a strategy.",
+              ],
+            },
+            {
+              number: "3.",
+              title: "You don't need to conquer the world. Conquer your local community.",
+              paragraphs: [
+                "Local traction matters. Strong restaurants win close to home by serving nearby customers who come back again and again.",
+                "Consistent business comes from nearby customers who order repeatedly. Broad exposure means little if it doesn't convert into local, repeat demand.",
+              ],
+            },
+            {
+              number: "4.",
+              title: "Your menu should help customers decide quickly and confidently.",
+              paragraphs: [
+                "Your menu is not just a list of items. It is how customers understand your food, decide what to order, and decide whether to come back.",
+                "If your menu is unclear, hard to navigate, or incomplete, customers hesitate or choose something else.",
+                "A well-structured menu reduces friction, improves understanding, and leads to more confident decisions.",
+              ],
+            },
+            {
+              number: "5.",
+              title: "Satisfied customers are your greatest promotional ally.",
+              paragraphs: [
+                "The most reliable growth comes from:",
+                "When customers consistently get good value and a smooth experience, they return, and they share their experience with others.",
+              ],
+              bullets: ["repeat customers", "word-of-mouth"],
+            },
+          ],
+          problemTitle: "The Problem with the Current System",
+          problemParagraphs: [
+            "The current system is dominated by powerful third-party platforms that control how customers find restaurants, how menus are presented, and how revenue is distributed.",
+            "While doing this, they restrict access to customer data, preventing restaurants from ever communicating directly or building lasting customer relationships.",
+            "Third-party platforms charge restaurants up to 30% per order. On top of that, customers absorb fees and markups of up to 15%.",
+            "Add it up: as much as 45 cents of every dollar in a transaction is being extracted from both sides simultaneously.",
+            "And to top it off, they decide when you get paid, holding onto and investing your hard-earned revenue before transmitting it to you.",
+          ],
+          quote: "45% of the pie is not just greedy, it's abusive.",
+          lossesTitle: "What restaurants lose",
+          losses: [
+            "Up to 30% commission on every order",
+            "Margin that could go to better food, staff, or growth",
+            "The ability to build customer relationships and promote their own deals directly",
+            "Control over when they receive money they have already earned",
+          ],
+          customerImpactTitle: "How this impacts customers",
+          customerImpact: [
+            "Pay up to 45% more before service fees, taxes, tips, and delivery fees",
+            "Forced to seek alternatives, including dining out less or cooking at home",
+            "Net effect: customers pay far more and receive far less in value.",
+          ],
+          betterWayTitle: "There is a better way.",
+          betterWayParagraphs: [
+            "Introducing a new platform built for the benefit of restaurants and their customers.",
+            "We are a new, scrappy platform entering the marketplace, and we are not here to control your business.",
+            "Our goal is to tilt the balance of power back in your favor by giving you a lower-cost option you can use alongside third-party apps or as an alternative.",
+            "More options create real competition, and competition works for you.",
+          ],
+          builtAroundTitle: "Built around these principles",
+          features: [
+            {
+              title: "1. Control.",
+              strong: "You stay in control of your business.",
+              paragraphs: [],
+              bullets: [
+                "You keep drastically more from each order",
+                "Your revenue flows directly to your bank account; we do not hold your money",
+                "You decide how to use the platform and can use it alongside your existing third-party platforms",
+              ],
+            },
+            {
+              title: "2. Value & Margins.",
+              strong: "Better economics by design.",
+              paragraphs: [
+                "Replace artificially inflated prices with real prices and give that value back to your customers.",
+              ],
+              bullets: [
+                "Reduce your in-app prices by up to 20% while maintaining your margins",
+                "Eliminate the roughly 15% surcharge customers pay on third-party apps",
+                "Continue fulfilling orders through third-party delivery networks while paying only a delivery fee, which can be passed to the customer",
+              ],
+            },
+            {
+              title: "3. Local.",
+              strong: "Win where your business actually wins.",
+              paragraphs: [
+                "Yes, we are a local upstart, and we do not have national coverage.",
+                "But the reality is this: most of your customers already live and work nearby.",
+                "That is why we are focused on your local community, delivering immediate, meaningful impact where it actually matters.",
+              ],
+              bullets: [
+                "The typical diner travels only about 3 miles for a meal",
+                "Roughly 85% of a restaurant's customers come from within a 3–5 mile radius",
+              ],
+              closing: "Win locally, and you win what matters.",
+            },
+            {
+              title: "4. Menu.",
+              strong: "Your menu works the way it should.",
+              paragraphs: [
+                "We present your menu in a structured format that preserves your brand identity while making it easier for customers to understand what you offer.",
+                "Your menu is enhanced with intelligence that helps customers understand, compare, and choose with confidence.",
+              ],
+              bullets: [
+                "Structured, searchable menu presentation",
+                "Clear organization and item visibility",
+                "Designed to help customers decide quickly and confidently",
+              ],
+            },
+            {
+              title: "5. Customer Promotion & Engagement.",
+              strong: "Turn your customers into promoters and own the relationship.",
+              paragraphs: [
+                "Your customers can follow you on the platform and stay directly connected to your business.",
+                "Repeat, local, satisfied customers become your most effective form of promotion.",
+              ],
+              bullets: [
+                "Your followers automatically receive your deals and updates",
+                "Promote offers and announcements directly without additional fees",
+                "Customers can easily share your menu and deals with their friends directly from our app",
+              ],
+            },
+          ],
+          localTitle: "Start local. Win what matters.",
+          localParagraphs: [
+            "While we're not launching at a national scale, we're starting where it matters: your community.",
+            "We will market the platform locally, with a strong focus on areas in and around college campuses.",
+          ],
+          localStrong: "Win locally, and you win what matters.",
+          contactTitle: "Join us and take back control of your restaurant.",
+          contactLead: "Call, text, or email, whatever works for you. I'll come to you.",
+          callCta: "Call (213) 712-4885",
+          textCta: "Text Andre",
+          emailCta: "Email Andre",
+          smsBody: "Hi Andre, I want to learn more.",
+          noteTitle: "A note from Andre Barber",
+          noteParagraphs: [
+            "I'm building a platform designed to give restaurants back control, protect their margins, and restore direct relationships with their customers.",
+            "Too many restaurants are working too hard while a 45% tax on every transaction quietly bleeds the industry dry.",
+            "Los Angeles has the talent, the culture, and the customer base to prove there's a better way, but it starts with restaurants deciding to stop subsidizing a system that was never built for them.",
+            "I'd like to meet you and show you what's coming.",
+          ],
+          footnoteLabel: "[1]",
+          footerLocation: "Los Angeles, California · Early restaurant introductions underway",
+          mobileCall: "Call",
+          mobileText: "Text",
+          mobileEmail: "Email",don
+          mobileSmsBody: "Hi Andre, I want to get my restaurant listed.",
+        },
+        es: {
+          htmlLang: "es",
+          navSubtitle: "Andre Barber · Los Ángeles",
+          navCta: "Agenda una reunión de 30 minutos",
+          languages: {
+            en: "English",
+            es: "Español",
+            zh: "中文",
+            ko: "한국어",
+          },
+          eyebrow: "Lanzamiento en Los Ángeles · Comenzando cerca de universidades importantes",
+          heroTitle: "5 principios por los que todo dueño de restaurante debería guiarse",
+          heroStrong: "Para operadores que quieren control, mejores márgenes y crecimiento a largo plazo.",
+          heroParagraphs: [
+            "Ya sea que usted sea un nuevo dueño de restaurante o un operador con experiencia, los cinco principios a continuación le servirán bien.",
+            "Estos principios no son nuevos. Reflejan cómo realmente tienen éxito los restaurantes sólidos cuando mantienen el control de su negocio.",
+          ],
+          principles: [
+            {
+              number: "1.",
+              title:
+                "Nunca entregue ciegamente el control de su negocio a un tercero, especialmente a uno con poder para decidir cuánto de sus ingresos se queda.",
+              paragraphs: [
+                "Permitir que aplicaciones de terceros poderosas y costosas controlen su negocio es una forma de operar fundamentalmente defectuosa.",
+                "Tal como existen hoy, ellas determinan:",
+                "Usted debe ser el capitán de su propio barco. Los buenos administradores adoptan opciones que preservan el control operativo.",
+              ],
+              bullets: [
+                "cómo los clientes lo encuentran",
+                "cómo se muestra su menú",
+                "cuánto gana por cada pedido y cuándo esos fondos llegan a su cuenta bancaria",
+              ],
+            },
+            {
+              number: "2.",
+              title: "Un mejor valor y márgenes más altos impulsan el éxito, no precios más altos.",
+              paragraphs: [
+                "Un mejor valor y márgenes más saludables generan demanda repetida con más confiabilidad que subir precios para absorber comisiones altas.",
+                "Subir precios para compensar comisiones altas reduce la demanda. Los clientes piden menos, cambian de opción o dejan de pedir por completo.",
+                "Incluso aumentos modestos importan: un aumento del 5% en el precio puede reducir la demanda aproximadamente entre 7% y 10%.[1]",
+                "Esperar que los clientes sigan cubriendo estos costos no es una estrategia.",
+              ],
+            },
+            {
+              number: "3.",
+              title: "No necesita conquistar el mundo. Conquiste su comunidad local.",
+              paragraphs: [
+                "La tracción local importa. Los restaurantes sólidos ganan cerca de casa al atender a clientes cercanos que regresan una y otra vez.",
+                "El negocio constante viene de clientes cercanos que hacen pedidos repetidos. La exposición amplia vale poco si no se convierte en demanda local y recurrente.",
+              ],
+            },
+            {
+              number: "4.",
+              title: "Su menú debe ayudar a los clientes a decidir rápido y con confianza.",
+              paragraphs: [
+                "Su menú no es solo una lista de productos. Es la forma en que los clientes entienden su comida, deciden qué pedir y deciden si volverán.",
+                "Si su menú es confuso, difícil de navegar o incompleto, los clientes dudan o eligen otra cosa.",
+                "Un menú bien estructurado reduce la fricción, mejora la comprensión y conduce a decisiones más seguras.",
+              ],
+            },
+            {
+              number: "5.",
+              title: "Los clientes satisfechos son su mejor aliado promocional.",
+              paragraphs: [
+                "El crecimiento más confiable proviene de:",
+                "Cuando los clientes reciben constantemente buen valor y una experiencia fluida, regresan y comparten su experiencia con otros.",
+              ],
+              bullets: ["clientes recurrentes", "recomendación boca a boca"],
+            },
+          ],
+          problemTitle: "El problema del sistema actual",
+          problemParagraphs: [
+            "El sistema actual está dominado por plataformas de terceros poderosas que controlan cómo los clientes encuentran restaurantes, cómo se presentan los menús y cómo se distribuyen los ingresos.",
+            "Al hacerlo, restringen el acceso a los datos de los clientes, impidiendo que los restaurantes se comuniquen directamente o construyan relaciones duraderas.",
+            "Las plataformas de terceros cobran a los restaurantes hasta 30% por pedido. Además, los clientes absorben tarifas y sobreprecios de hasta 15%.",
+            "Si lo suma todo: hasta 45 centavos de cada dólar en una transacción se están extrayendo de ambos lados al mismo tiempo.",
+            "Y para rematar, ellas deciden cuándo le pagan, reteniendo e invirtiendo sus ingresos antes de transferírselos.",
+          ],
+          quote: "Quedarse con el 45% del pastel no solo es codicia, es abuso.",
+          lossesTitle: "Lo que pierden los restaurantes",
+          losses: [
+            "Hasta 30% de comisión en cada pedido",
+            "Margen que podría destinarse a mejor comida, personal o crecimiento",
+            "La capacidad de construir relaciones con los clientes y promocionar sus propias ofertas directamente",
+            "Control sobre cuándo reciben dinero que ya ganaron",
+          ],
+          customerImpactTitle: "Cómo afecta esto a los clientes",
+          customerImpact: [
+            "Pagan hasta 45% más antes de cargos por servicio, impuestos, propinas y tarifas de entrega",
+            "Se ven obligados a buscar alternativas, incluso salir a comer menos o cocinar en casa",
+            "Efecto neto: los clientes pagan mucho más y reciben mucho menos valor.",
+          ],
+          betterWayTitle: "Hay una mejor manera.",
+          betterWayParagraphs: [
+            "Presentamos una nueva plataforma creada para beneficiar a los restaurantes y a sus clientes.",
+            "Somos una plataforma nueva, con empuje, que entra al mercado y no estamos aquí para controlar su negocio.",
+            "Nuestro objetivo es inclinar el equilibrio de poder a su favor al darle una opción de menor costo que pueda usar junto con aplicaciones de terceros o como alternativa.",
+            "Más opciones crean competencia real, y la competencia trabaja para usted.",
+          ],
+          builtAroundTitle: "Diseñado alrededor de estos principios",
+          features: [
+            {
+              title: "1. Control.",
+              strong: "Usted mantiene el control de su negocio.",
+              paragraphs: [],
+              bullets: [
+                "Conserva mucho más de cada pedido",
+                "Sus ingresos van directamente a su cuenta bancaria; nosotros no retenemos su dinero",
+                "Usted decide cómo usar la plataforma y puede usarla junto con sus plataformas de terceros actuales",
+              ],
+            },
+            {
+              title: "2. Valor y márgenes.",
+              strong: "Mejor economía por diseño.",
+              paragraphs: [
+                "Reemplace precios inflados artificialmente por precios reales y devuelva ese valor a sus clientes.",
+              ],
+              bullets: [
+                "Reduzca sus precios en la app hasta un 20% manteniendo sus márgenes",
+                "Elimine el recargo aproximado del 15% que los clientes pagan en aplicaciones de terceros",
+                "Siga cumpliendo pedidos mediante redes externas de entrega pagando solo una tarifa de entrega, que puede trasladarse al cliente",
+              ],
+            },
+            {
+              title: "3. Local.",
+              strong: "Gane donde su negocio realmente gana.",
+              paragraphs: [
+                "Sí, somos un proyecto local emergente y no tenemos cobertura nacional.",
+                "Pero la realidad es esta: la mayoría de sus clientes ya viven y trabajan cerca.",
+                "Por eso estamos enfocados en su comunidad local, generando un impacto inmediato y significativo donde realmente importa.",
+              ],
+              bullets: [
+                "El comensal típico viaja solo unas 3 millas para una comida",
+                "Aproximadamente el 85% de los clientes de un restaurante provienen de un radio de 3 a 5 millas",
+              ],
+              closing: "Gane localmente y ganará lo que importa.",
+            },
+            {
+              title: "4. Menú.",
+              strong: "Su menú funciona como debería.",
+              paragraphs: [
+                "Presentamos su menú en un formato estructurado que conserva su identidad de marca y facilita que los clientes entiendan lo que ofrece.",
+                "Su menú se mejora con inteligencia que ayuda a los clientes a entender, comparar y elegir con confianza.",
+              ],
+              bullets: [
+                "Presentación estructurada y fácil de buscar del menú",
+                "Organización clara y visibilidad de los productos",
+                "Diseñado para ayudar a los clientes a decidir rápido y con confianza",
+              ],
+            },
+            {
+              title: "5. Promoción y relación con el cliente.",
+              strong: "Convierta a sus clientes en promotores y sea dueño de la relación.",
+              paragraphs: [
+                "Sus clientes pueden seguirlo en la plataforma y mantenerse conectados directamente con su negocio.",
+                "Los clientes recurrentes, locales y satisfechos se convierten en su forma más eficaz de promoción.",
+              ],
+              bullets: [
+                "Sus seguidores reciben automáticamente sus ofertas y actualizaciones",
+                "Promocione ofertas y anuncios directamente sin tarifas adicionales",
+                "Los clientes pueden compartir fácilmente su menú y ofertas con sus amigos directamente desde nuestra app",
+              ],
+            },
+          ],
+          localTitle: "Empiece local. Gane lo que importa.",
+          localParagraphs: [
+            "Aunque no estamos lanzando a escala nacional, estamos comenzando donde importa: su comunidad.",
+            "Promocionaremos la plataforma localmente, con un fuerte enfoque en zonas dentro y alrededor de campus universitarios.",
+          ],
+          localStrong: "Gane localmente y ganará lo que importa.",
+          contactTitle: "Únase y recupere el control de su restaurante.",
+          contactLead: "Llame, escriba o mande un correo, lo que le funcione mejor. Yo voy hasta usted.",
+          callCta: "Llame al (213) 712-4885",
+          textCta: "Escribir a Andre",
+          emailCta: "Enviar correo a Andre",
+          smsBody: "Hola Andre, quiero saber más.",
+          noteTitle: "Una nota de Andre Barber",
+          noteParagraphs: [
+            "Estoy construyendo una plataforma diseñada para devolverles a los restaurantes el control, proteger sus márgenes y restaurar relaciones directas con sus clientes.",
+            "Demasiados restaurantes trabajan demasiado duro mientras un impuesto del 45% en cada transacción desangra silenciosamente a la industria.",
+            "Los Ángeles tiene el talento, la cultura y la base de clientes para demostrar que hay una mejor manera, pero empieza cuando los restaurantes deciden dejar de subsidiar un sistema que nunca fue construido para ellos.",
+            "Me gustaría conocerle y mostrarle lo que viene.",
+          ],
+          footnoteLabel: "[1]",
+          footerLocation: "Los Ángeles, California · Primeras presentaciones a restaurantes en marcha",
+          mobileCall: "Llamar",
+          mobileText: "Texto",
+          mobileEmail: "Correo",
+          mobileSmsBody: "Hola Andre, quiero registrar mi restaurante.",
+        },
+        zh: {
+          htmlLang: "zh",
+          navSubtitle: "Andre Barber · 洛杉矶",
+          navCta: "预约 30 分钟会面",
+          languages: {
+            en: "English",
+            es: "Español",
+            zh: "中文",
+            ko: "한국어",
+          },
+          eyebrow: "洛杉矶启动 · 先从大型高校周边开始",
+          heroTitle: "每位餐厅老板都应坚持的 5 条原则",
+          heroStrong: "面向希望获得控制权、更高利润率和长期增长的经营者。",
+          heroParagraphs: [
+            "无论您是新餐厅老板还是经验丰富的运营者，下面这五条原则都会对您有帮助。",
+            "这些原则并不新鲜。它们反映了真正优秀的餐厅在掌握自己业务控制权时是如何成功的。",
+          ],
+          principles: [
+            {
+              number: "1.",
+              title: "不要盲目把您的生意控制权交给第三方，尤其是那些可以决定要拿走您多少收入的平台。",
+              paragraphs: [
+                "让强势且昂贵的第三方应用控制您的业务，本质上就是一种有缺陷的经营方式。",
+                "在当前体系下，它们决定：",
+                "您必须做自己生意的掌舵人。优秀的经营者会选择能够保留运营控制权的方案。",
+              ],
+              bullets: [
+                "顾客如何找到您",
+                "您的菜单如何展示",
+                "您每笔订单能赚多少，以及这笔钱何时进入您的银行账户",
+              ],
+            },
+            {
+              number: "2.",
+              title: "更好的价值和更高的利润率带来成功，而不是更高的价格。",
+              paragraphs: [
+                "与其通过涨价来吸收高额佣金，不如提供更好的价值和更健康的利润率，这样更能稳定带来回头客。",
+                "为了抵消高佣金而涨价会降低需求。顾客会少点单、转向其他选择，或者干脆不点。",
+                "即使是小幅涨价也有影响：价格上涨 5%，需求大约可能下降 7% 到 10%。[1]",
+                "指望顾客一直替您承担这些成本，并不是一种策略。",
+              ],
+            },
+            {
+              number: "3.",
+              title: "您不需要征服全世界。先赢得本地社区。",
+              paragraphs: [
+                "本地吸引力很重要。优秀的餐厅是在家门口赢下市场，服务附近那些会一次又一次回来的顾客。",
+                "稳定生意来自附近反复下单的顾客。如果不能转化为本地复购需求，再大的曝光也意义不大。",
+              ],
+            },
+            {
+              number: "4.",
+              title: "您的菜单应该帮助顾客快速而有把握地做决定。",
+              paragraphs: [
+                "菜单不只是菜品列表。它决定顾客如何理解您的食物、如何决定点什么，以及是否愿意再次光顾。",
+                "如果您的菜单不清晰、难以浏览或信息不完整，顾客就会犹豫，或者转而选择别家。",
+                "结构清晰的菜单能够减少阻力、提升理解度，并让顾客更有信心地下单。",
+              ],
+            },
+            {
+              number: "5.",
+              title: "满意的顾客是您最有力的推广伙伴。",
+              paragraphs: [
+                "最可靠的增长来自：",
+                "当顾客持续获得良好价值和顺畅体验时，他们会回来，也会把体验分享给别人。",
+              ],
+              bullets: ["回头客", "口碑传播"],
+            },
+          ],
+          problemTitle: "当前系统的问题",
+          problemParagraphs: [
+            "当前系统由强势的第三方平台主导，它们控制顾客如何找到餐厅、菜单如何呈现，以及收入如何分配。",
+            "与此同时，它们还限制顾客数据的获取，使餐厅无法直接沟通，也无法建立长期客户关系。",
+            "第三方平台向餐厅每笔订单最高收取 30% 的费用。此外，顾客还要承担最高 15% 的加价和费用。",
+            "合计起来，一笔交易中每 1 美元最多有 45 美分会被同时从双方抽走。",
+            "更过分的是，它们还决定何时向您付款，在把钱转给您之前先占用并投资您辛苦赚来的收入。",
+          ],
+          quote: "拿走整块蛋糕的 45%，这不仅是贪婪，更是一种压榨。",
+          lossesTitle: "餐厅失去了什么",
+          losses: [
+            "每笔订单最高 30% 的佣金",
+            "本可用于提升菜品、员工或增长的利润空间",
+            "建立客户关系并直接推广自家优惠的能力",
+            "对已赚收入何时到账的控制权",
+          ],
+          customerImpactTitle: "这对顾客的影响",
+          customerImpact: [
+            "在服务费、税费、小费和配送费之前，就要多支付最高 45%",
+            "被迫寻找替代方案，包括减少外出就餐或在家做饭",
+            "最终结果是：顾客付得更多，得到的价值却更少。",
+          ],
+          betterWayTitle: "其实有更好的方式。",
+          betterWayParagraphs: [
+            "这是一套为餐厅及其顾客利益而建立的新平台。",
+            "我们是一个刚进入市场、充满干劲的新平台，我们不是来控制您生意的。",
+            "我们的目标是把力量重新偏向您，为您提供一个更低成本的选择，您既可以与第三方应用同时使用，也可以把它当作替代方案。",
+            "更多选择会带来真正的竞争，而竞争对您有利。",
+          ],
+          builtAroundTitle: "平台围绕这些原则建立",
+          features: [
+            {
+              title: "1. 控制权。",
+              strong: "您的生意始终由您掌控。",
+              paragraphs: [],
+              bullets: [
+                "每笔订单您可以保留更多收入",
+                "收入直接进入您的银行账户；我们不会扣留您的资金",
+                "您决定如何使用这个平台，也可以与现有第三方平台同时使用",
+              ],
+            },
+            {
+              title: "2. 价值与利润率。",
+              strong: "从设计上就拥有更好的经济模型。",
+              paragraphs: [
+                "把被人为抬高的价格恢复为真实价格，并把这部分价值还给顾客。",
+              ],
+              bullets: [
+                "在保持利润率的同时，将应用内价格最多降低 20%",
+                "取消顾客在第三方应用上承担的约 15% 附加费用",
+                "继续通过第三方配送网络完成订单，但您只需支付配送费，而且这部分费用可以转给顾客",
+              ],
+            },
+            {
+              title: "3. 本地。",
+              strong: "在您的生意真正获胜的地方获胜。",
+              paragraphs: [
+                "是的，我们是一个本地新平台，并没有全国覆盖。",
+                "但现实是：您的大多数顾客本来就住在或工作在附近。",
+                "这就是为什么我们专注于您的本地社区，在真正重要的地方带来即时而有意义的影响。",
+              ],
+              bullets: [
+                "普通食客通常只会为一顿饭行驶约 3 英里",
+                "大约 85% 的餐厅顾客来自 3 到 5 英里半径内",
+              ],
+              closing: "先赢本地，才能赢得真正重要的东西。",
+            },
+            {
+              title: "4. 菜单。",
+              strong: "您的菜单应该按应有的方式发挥作用。",
+              paragraphs: [
+                "我们会以结构化格式展示您的菜单，在保留品牌识别度的同时，让顾客更容易理解您提供什么。",
+                "您的菜单会获得智能增强，帮助顾客更好地理解、比较并有信心地选择。",
+              ],
+              bullets: [
+                "结构化、可搜索的菜单展示",
+                "清晰的组织方式和菜品可见性",
+                "帮助顾客快速而有把握地做决定",
+              ],
+            },
+            {
+              title: "5. 顾客推广与互动。",
+              strong: "让顾客成为您的推广者，并把客户关系掌握在自己手中。",
+              paragraphs: [
+                "顾客可以在平台上关注您，并与您的生意保持直接连接。",
+                "本地、满意且会复购的顾客，会成为您最有效的宣传力量。",
+              ],
+              bullets: [
+                "关注您的顾客会自动收到您的优惠和更新",
+                "无需额外费用即可直接发布优惠和公告",
+                "顾客可以直接通过我们的应用把您的菜单和优惠分享给朋友",
+              ],
+            },
+          ],
+          localTitle: "从本地开始。赢下真正重要的东西。",
+          localParagraphs: [
+            "虽然我们不是以全国规模上线，但我们会从真正重要的地方开始，也就是您的社区。",
+            "我们会在本地推广这个平台，重点覆盖大学校园及周边区域。",
+          ],
+          localStrong: "先赢本地，才能赢得真正重要的东西。",
+          contactTitle: "加入我们，重新掌控您的餐厅。",
+          contactLead: "欢迎来电、短信或邮件，您方便哪种都可以。我会亲自上门。",
+          callCta: "致电 (213) 712-4885",
+          textCta: "给 Andre 发短信",
+          emailCta: "给 Andre 发邮件",
+          smsBody: "你好 Andre，我想了解更多。",
+          noteTitle: "Andre Barber 的一封说明",
+          noteParagraphs: [
+            "我正在打造一个平台，帮助餐厅重新掌控经营、保护利润率，并恢复与顾客的直接关系。",
+            "太多餐厅已经非常努力，却仍被每笔交易中 45% 的隐性抽成悄悄拖垮整个行业。",
+            "洛杉矶拥有证明更好方式存在所需的人才、文化和客户基础，但前提是餐厅决定停止补贴一个从来不是为自己建立的系统。",
+            "我希望能见见您，向您展示接下来要发生的事情。",
+          ],
+          footnoteLabel: "[1]",
+          footerLocation: "加利福尼亚州洛杉矶 · 早期餐厅介绍正在进行中",
+          mobileCall: "致电",
+          mobileText: "短信",
+          mobileEmail: "邮件",
+          mobileSmsBody: "你好 Andre，我想让我的餐厅上线。",
+        },
+        ko: {
+          htmlLang: "ko",
+          navSubtitle: "Andre Barber · 로스앤젤레스",
+          navCta: "30분 미팅 예약",
+          languages: {
+            en: "English",
+            es: "Español",
+            zh: "中文",
+            ko: "한국어",
+          },
+          eyebrow: "로스앤젤레스 출시 · 주요 대학가 주변부터 시작",
+          heroTitle: "모든 식당 사장이 지켜야 할 5가지 원칙",
+          heroStrong: "통제권, 더 나은 마진, 장기 성장을 원하는 운영자를 위한 내용입니다.",
+          heroParagraphs: [
+            "새로 식당을 시작한 사장이든 경험 많은 운영자이든, 아래의 다섯 가지 원칙은 분명 도움이 됩니다.",
+            "이 원칙들은 새로운 것이 아닙니다. 식당이 자기 사업의 통제권을 가질 때 실제로 어떻게 성공하는지를 보여줍니다.",
+          ],
+          principles: [
+            {
+              number: "1.",
+              title: "사업의 통제권을 제3자에게 무작정 넘기지 마십시오. 특히 매출에서 얼마를 가져갈지 스스로 정하는 곳이라면 더 그렇습니다.",
+              paragraphs: [
+                "강력하고 비싼 제3자 앱이 식당 운영을 통제하게 두는 것은 근본적으로 잘못된 방식입니다.",
+                "지금의 구조에서는 그들이 다음을 결정합니다:",
+                "사장님은 자기 배의 선장이어야 합니다. 좋은 운영자는 운영 통제권을 지켜주는 선택지를 받아들입니다.",
+              ],
+              bullets: [
+                "고객이 식당을 어떻게 찾는지",
+                "메뉴가 어떻게 보여지는지",
+                "주문당 얼마를 버는지, 그리고 그 돈이 언제 은행 계좌로 들어오는지",
+              ],
+            },
+            {
+              number: "2.",
+              title: "더 높은 가격이 아니라 더 좋은 가치와 더 높은 마진이 성공을 만듭니다.",
+              paragraphs: [
+                "높은 수수료를 메우기 위해 가격을 올리는 것보다, 더 좋은 가치와 더 건강한 마진이 반복 수요를 더 안정적으로 만듭니다.",
+                "높은 수수료를 상쇄하려고 가격을 올리면 수요가 줄어듭니다. 고객은 주문을 줄이거나 다른 선택지로 이동하거나 아예 주문을 멈춥니다.",
+                "작은 인상도 영향이 있습니다. 가격을 5% 올리면 수요가 약 7~10% 줄 수 있습니다.[1]",
+                "고객이 계속 이 비용을 대신 부담해 줄 것이라고 기대하는 것은 전략이 아닙니다.",
+              ],
+            },
+            {
+              number: "3.",
+              title: "세상을 정복할 필요는 없습니다. 먼저 지역 커뮤니티를 잡으십시오.",
+              paragraphs: [
+                "지역 기반의 탄력이 중요합니다. 강한 식당은 가까운 곳에서, 반복적으로 돌아오는 고객을 통해 이깁니다.",
+                "안정적인 매출은 반복 주문하는 인근 고객에게서 나옵니다. 넓은 노출은 지역의 반복 수요로 이어지지 않으면 큰 의미가 없습니다.",
+              ],
+            },
+            {
+              number: "4.",
+              title: "메뉴는 고객이 빠르고 확신 있게 결정하도록 도와야 합니다.",
+              paragraphs: [
+                "메뉴는 단순한 품목 목록이 아닙니다. 고객이 음식을 이해하고, 무엇을 주문할지 결정하고, 다시 올지 판단하는 방식입니다.",
+                "메뉴가 불명확하거나 찾기 어렵거나 불완전하면 고객은 망설이거나 다른 곳을 선택합니다.",
+                "잘 구조화된 메뉴는 마찰을 줄이고 이해를 높이며 더 자신 있는 선택으로 이어집니다.",
+              ],
+            },
+            {
+              number: "5.",
+              title: "만족한 고객은 가장 강력한 홍보 파트너입니다.",
+              paragraphs: [
+                "가장 신뢰할 수 있는 성장은 다음에서 나옵니다:",
+                "고객이 꾸준히 좋은 가치와 매끄러운 경험을 얻으면 다시 돌아오고, 그 경험을 다른 사람에게도 알립니다.",
+              ],
+              bullets: ["재방문 고객", "입소문"],
+            },
+          ],
+          problemTitle: "현재 시스템의 문제",
+          problemParagraphs: [
+            "현재 시스템은 고객이 식당을 어떻게 찾는지, 메뉴가 어떻게 표시되는지, 매출이 어떻게 배분되는지를 통제하는 강력한 제3자 플랫폼이 지배하고 있습니다.",
+            "이 과정에서 이들은 고객 데이터 접근을 제한해 식당이 직접 소통하거나 장기적인 고객 관계를 구축하지 못하게 합니다.",
+            "제3자 플랫폼은 주문당 최대 30%를 식당에 부과합니다. 여기에 고객은 최대 15%의 수수료와 인상분까지 부담합니다.",
+            "합치면 거래 1달러당 최대 45센트가 양쪽에서 동시에 빠져나가는 셈입니다.",
+            "게다가 이들은 언제 돈을 받을지까지 결정하며, 사장님이 힘들게 번 매출을 넘기기 전에 먼저 붙잡아 두고 운용합니다.",
+          ],
+          quote: "파이의 45%를 가져가는 것은 단순한 탐욕이 아니라 착취입니다.",
+          lossesTitle: "식당이 잃는 것",
+          losses: [
+            "주문마다 최대 30%의 수수료",
+            "더 좋은 음식, 직원, 성장에 쓸 수 있었던 마진",
+            "고객 관계를 만들고 자체 프로모션을 직접 알릴 수 있는 능력",
+            "이미 번 돈을 언제 받을지에 대한 통제권",
+          ],
+          customerImpactTitle: "고객에게 미치는 영향",
+          customerImpact: [
+            "서비스 수수료, 세금, 팁, 배달비를 제외하고도 최대 45% 더 지불",
+            "외식 횟수를 줄이거나 집에서 요리하는 등 다른 선택을 찾게 됨",
+            "결과적으로 고객은 훨씬 더 많이 내고 훨씬 적은 가치를 받습니다.",
+          ],
+          betterWayTitle: "더 나은 방법이 있습니다.",
+          betterWayParagraphs: [
+            "식당과 고객 모두의 이익을 위해 만들어진 새로운 플랫폼을 소개합니다.",
+            "우리는 시장에 들어오는 새롭고 민첩한 플랫폼이며, 사장님의 사업을 통제하려는 것이 아닙니다.",
+            "우리의 목표는 제3자 앱과 함께 쓰거나 대안으로 쓸 수 있는 더 낮은 비용의 선택지를 제공해 힘의 균형을 다시 사장님 쪽으로 돌리는 것입니다.",
+            "선택지가 많아지면 진짜 경쟁이 생기고, 경쟁은 사장님에게 유리하게 작동합니다.",
+          ],
+          builtAroundTitle: "이 원칙을 중심으로 설계했습니다",
+          features: [
+            {
+              title: "1. 통제권.",
+              strong: "사업의 통제권은 사장님에게 있습니다.",
+              paragraphs: [],
+              bullets: [
+                "주문마다 훨씬 더 많은 수익을 남길 수 있습니다",
+                "매출은 은행 계좌로 직접 들어가며, 우리는 돈을 보관하지 않습니다",
+                "플랫폼을 어떻게 쓸지 사장님이 결정하며 기존 제3자 플랫폼과 함께 사용할 수도 있습니다",
+              ],
+            },
+            {
+              title: "2. 가치와 마진.",
+              strong: "처음부터 더 나은 경제 구조.",
+              paragraphs: [
+                "인위적으로 부풀려진 가격을 실제 가격으로 바꾸고 그 가치를 고객에게 돌려주십시오.",
+              ],
+              bullets: [
+                "마진을 유지하면서 앱 내 가격을 최대 20%까지 낮출 수 있습니다",
+                "고객이 제3자 앱에서 부담하는 약 15%의 추가비용을 없앨 수 있습니다",
+                "제3자 배달 네트워크를 계속 활용하되 배달비만 부담하면 되고, 그 비용은 고객에게 전가할 수 있습니다",
+              ],
+            },
+            {
+              title: "3. 로컬.",
+              strong: "사업이 실제로 이기는 곳에서 이기십시오.",
+              paragraphs: [
+                "맞습니다. 우리는 지역 기반의 신생 플랫폼이며 전국 커버리지는 없습니다.",
+                "하지만 현실은 이렇습니다. 대부분의 고객은 이미 근처에 살고 일합니다.",
+                "그래서 우리는 사장님의 지역 커뮤니티에 집중하며, 실제로 중요한 곳에서 즉각적이고 의미 있는 영향을 만들고자 합니다.",
+              ],
+              bullets: [
+                "일반적인 고객은 식사를 위해 약 3마일 정도만 이동합니다",
+                "식당 고객의 약 85%는 반경 3~5마일 안에서 옵니다",
+              ],
+              closing: "로컬에서 이기면, 중요한 것을 이기게 됩니다.",
+            },
+            {
+              title: "4. 메뉴.",
+              strong: "메뉴는 원래 그래야 하는 방식으로 작동해야 합니다.",
+              paragraphs: [
+                "우리는 브랜드 정체성을 유지하면서도 고객이 제공하는 음식을 더 쉽게 이해할 수 있도록 구조화된 형식으로 메뉴를 보여줍니다.",
+                "메뉴에는 고객이 이해하고 비교하고 자신 있게 선택할 수 있도록 돕는 지능형 기능이 더해집니다.",
+              ],
+              bullets: [
+                "구조화되고 검색 가능한 메뉴 표시",
+                "명확한 구성과 품목 가시성",
+                "고객이 빠르고 자신 있게 결정하도록 설계",
+              ],
+            },
+            {
+              title: "5. 고객 홍보와 관계 형성.",
+              strong: "고객을 홍보자로 만들고 관계를 직접 소유하십시오.",
+              paragraphs: [
+                "고객은 플랫폼에서 사장님을 팔로우하고 식당과 직접 연결된 상태를 유지할 수 있습니다.",
+                "반복 방문하는 지역의 만족한 고객은 가장 효과적인 홍보 수단이 됩니다.",
+              ],
+              bullets: [
+                "팔로워는 사장님의 딜과 업데이트를 자동으로 받습니다",
+                "추가 비용 없이 직접 프로모션과 공지를 알릴 수 있습니다",
+                "고객은 우리 앱에서 식당의 메뉴와 딜을 친구들에게 쉽게 공유할 수 있습니다",
+              ],
+            },
+          ],
+          localTitle: "로컬에서 시작하십시오. 중요한 것을 이기십시오.",
+          localParagraphs: [
+            "전국 규모로 시작하지는 않지만, 정말 중요한 곳인 사장님의 커뮤니티에서 시작합니다.",
+            "우리는 지역 중심으로 플랫폼을 알릴 것이며, 특히 대학가 안팎 지역에 강하게 집중할 것입니다.",
+          ],
+          localStrong: "로컬에서 이기면, 중요한 것을 이기게 됩니다.",
+          contactTitle: "함께하고 식당의 통제권을 되찾으십시오.",
+          contactLead: "전화, 문자, 이메일 중 편한 방식으로 연락하십시오. 제가 직접 찾아가겠습니다.",
+          callCta: "(213) 712-4885로 전화",
+          textCta: "Andre에게 문자",
+          emailCta: "Andre에게 이메일",
+          smsBody: "안녕하세요 Andre, 더 알고 싶습니다.",
+          noteTitle: "Andre Barber의 메모",
+          noteParagraphs: [
+            "저는 식당이 다시 통제권을 갖고, 마진을 지키고, 고객과의 직접적인 관계를 회복할 수 있도록 돕는 플랫폼을 만들고 있습니다.",
+            "너무 많은 식당이 매우 열심히 일하고 있지만, 거래마다 붙는 45%의 부담이 업계를 조용히 잠식하고 있습니다.",
+            "로스앤젤레스에는 더 나은 방법이 있다는 것을 증명할 인재, 문화, 고객 기반이 있습니다. 하지만 그 시작은 식당이 처음부터 자신들을 위해 만들어지지 않은 시스템에 대한 보조를 멈추는 데 있습니다.",
+            "직접 만나 앞으로 무엇이 오는지 보여드리고 싶습니다.",
+          ],
+          footnoteLabel: "[1]",
+          footerLocation: "캘리포니아주 로스앤젤레스 · 초기 식당 소개 진행 중",
+          mobileCall: "전화",
+          mobileText: "문자",
+          mobileEmail: "이메일",
+          mobileSmsBody: "안녕하세요 Andre, 제 식당을 등록하고 싶습니다.",
+        },
+      };
 
       function trackContactClick(action) {
         try {
@@ -742,6 +1205,263 @@
           console.warn("Tracking error:", error);
         }
       }
+
+      function App() {
+        const [language, setLanguage] = React.useState("en");
+        const t = translations[language];
+        const year = new Date().getFullYear();
+        const smsHref = `sms:+12137124885?body=${encodeURIComponent(t.smsBody)}`;
+        const mobileSmsHref = `sms:+12137124885?body=${encodeURIComponent(t.mobileSmsBody)}`;
+
+        React.useEffect(() => {
+          document.documentElement.lang = t.htmlLang;
+        }, [t.htmlLang]);
+
+        return (
+          <>
+            <header className="site-header">
+              <div className="container nav">
+                <div className="brand">
+                  <span className="brand-title">LA Menu Guy</span>
+                  <span className="brand-subtitle">{t.navSubtitle}</span>
+                </div>
+                <div className="header-actions">
+                  <div className="language-switcher" aria-label="Language selector">
+                    {["en", "es", "zh", "ko"].map((code, index) => (
+                      <React.Fragment key={code}>
+                        <button
+                          type="button"
+                          className={`language-button${language === code ? " active" : ""}`}
+                          onClick={() => setLanguage(code)}
+                        >
+                          {t.languages[code]}
+                        </button>
+                        {index < 3 ? <span className="language-separator">|</span> : null}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                  <a
+                    className="nav-cta"
+                    href="#book-meeting"
+                    onClick={() => trackContactClick("book_meeting_top_nav")}
+                  >
+                    {t.navCta}
+                  </a>
+                </div>
+              </div>
+            </header>
+
+            <main>
+              <section className="hero">
+                <div className="container hero-single">
+                  <div className="card hero-copy">
+                    <div className="eyebrow">{t.eyebrow}</div>
+                    <h1>{t.heroTitle}</h1>
+                    <p>
+                      <strong>{t.heroStrong}</strong>
+                    </p>
+                    {t.heroParagraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <section className="section">
+                <div className="container card section-inner">
+                  {t.principles.map((principle) => (
+                    <div className="principle" key={principle.number}>
+                      <h3>
+                        {principle.number} <em>{principle.title}</em>
+                      </h3>
+                      <p>{principle.paragraphs[0]}</p>
+                      {principle.paragraphs[1] ? <p>{principle.paragraphs[1]}</p> : null}
+                      {principle.bullets ? (
+                        <ul>
+                          {principle.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      {principle.paragraphs.slice(principle.bullets ? 2 : 1).map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="section">
+                <div className="container card section-inner">
+                  <h2 className="section-title">{t.problemTitle}</h2>
+                  {t.problemParagraphs.map((paragraph) => (
+                    <p className="section-lead" key={paragraph}>
+                      {paragraph}
+                    </p>
+                  ))}
+
+                  <div className="quote">
+                    <strong>{t.quote}</strong>
+                  </div>
+
+                  <div className="grid-2" style={{ marginTop: "22px" }}>
+                    <div className="callout">
+                      <h3>{t.lossesTitle}</h3>
+                      <ul>
+                        {t.losses.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="callout">
+                      <h3>{t.customerImpactTitle}</h3>
+                      <ul>
+                        {t.customerImpact.map((item, index) => (
+                          <li key={item}>
+                            {index === t.customerImpact.length - 1 ? <strong>{item}</strong> : item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section className="section" id="what-we-are-building">
+                <div className="container card section-inner">
+                  <h2 className="section-title">{t.betterWayTitle}</h2>
+                  {t.betterWayParagraphs.map((paragraph) => (
+                    <p className="section-lead" key={paragraph}>
+                      {paragraph}
+                    </p>
+                  ))}
+
+                  <h2 className="section-title" style={{ marginTop: "30px" }}>
+                    {t.builtAroundTitle}
+                  </h2>
+
+                  <div className="grid-2" style={{ marginTop: "22px" }}>
+                    {t.features.map((feature) => (
+                      <div className="feature" key={feature.title}>
+                        <h3>{feature.title}</h3>
+                        <p>
+                          <strong>{feature.strong}</strong>
+                        </p>
+                        {feature.paragraphs.map((paragraph) => (
+                          <p key={paragraph} style={{ marginTop: "10px" }}>
+                            {paragraph}
+                          </p>
+                        ))}
+                        <ul>
+                          {feature.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                          ))}
+                        </ul>
+                        {feature.closing ? (
+                          <p style={{ marginTop: "10px" }}>
+                            <strong>{feature.closing}</strong>
+                          </p>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <section className="section">
+                <div className="container card section-inner">
+                  <h2 className="section-title">{t.localTitle}</h2>
+                  {t.localParagraphs.map((paragraph) => (
+                    <p className="section-lead" key={paragraph}>
+                      {paragraph}
+                    </p>
+                  ))}
+                  <p className="section-lead" style={{ marginBottom: 0 }}>
+                    <strong>{t.localStrong}</strong>
+                  </p>
+                </div>
+              </section>
+
+              <section className="section" id="book-meeting">
+                <div className="container card section-inner">
+                  <h2 className="section-title">{t.contactTitle}</h2>
+                  <p className="section-lead">{t.contactLead}</p>
+
+                  <div className="meeting-contact-actions">
+                    <a
+                      className="btn btn-primary"
+                      href="tel:+12137124885"
+                      onClick={() => trackContactClick("call_meeting_section")}
+                    >
+                      {t.callCta}
+                    </a>
+                    <a
+                      className="btn btn-secondary"
+                      href={smsHref}
+                      onClick={() => trackContactClick("sms_meeting_section")}
+                    >
+                      {t.textCta}
+                    </a>
+                    <a
+                      className="btn btn-secondary"
+                      href="mailto:helloandrebarber@gmail.com"
+                      onClick={() => trackContactClick("email_meeting_section")}
+                    >
+                      {t.emailCta}
+                    </a>
+                  </div>
+                </div>
+              </section>
+
+              <section className="section">
+                <div className="container card section-inner">
+                  <h2 className="section-title">{t.noteTitle}</h2>
+                  {t.noteParagraphs.map((paragraph, index) => (
+                    <p
+                      className="section-lead"
+                      key={paragraph}
+                      style={index === t.noteParagraphs.length - 1 ? { marginBottom: 0 } : undefined}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </section>
+
+              <section className="section">
+                <div className="container card section-inner footnote">
+                  <p style={{ margin: 0 }}>
+                    <strong>{t.footnoteLabel}</strong> Andreyeva, Tatiana; Long, Michael W.; Brownell, Kelly D.{" "}
+                    <em>The Impact of Food Prices on Consumption: A Systematic Review of Research on the Price Elasticity of Demand for Food.</em>{" "}
+                    American Journal of Public Health, 2010.
+                  </p>
+                </div>
+              </section>
+            </main>
+
+            <footer className="footer">
+              <div className="container footer-inner">
+                <div>© {year} LA Menu Guy</div>
+                <div>{t.footerLocation}</div>
+              </div>
+            </footer>
+
+            <div className="mobile-contact-bar" id="mobile-contact-bar">
+              <a href="tel:+12137124885" onClick={() => trackContactClick("call_mobile_bar")}>
+                📞 {t.mobileCall}
+              </a>
+              <a href={mobileSmsHref} onClick={() => trackContactClick("sms_mobile_bar")}>
+                💬 {t.mobileText}
+              </a>
+              <a href="mailto:helloandrebarber@gmail.com" onClick={() => trackContactClick("email_mobile_bar")}>
+                ✉️ {t.mobileEmail}
+              </a>
+            </div>
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     </script>
   </body>
 </html>

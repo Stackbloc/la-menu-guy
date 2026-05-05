@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LA Menu Guy</title>
+    <meta
+      name="description"
+      content="LA Menu Guy helps Los Angeles restaurants take back control, keep more of what they earn, and build direct customer relationships."
+    />
+    <style>
+      :root {
+        --bg: #f8f7f3;
+        --surface: #ffffff;
+        --text: #152033;
+        --muted: #5b6472;
+        --line: #dfe3ea;
+        --brand: #123c7a;
+        --brand-dark: #0d2d5c;
+        --accent: #f0b84b;
+        --shadow: 0 16px 40px rgba(17, 24, 39, 0.08);
+        --radius: 22px;
+        --max: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(12px);
+        background: rgba(248, 247, 243, 0.88);
+        border-bottom: 1px solid rgba(223, 227, 234, 0.8);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 72px;
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .brand-title {
+        font-size: 1.05rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-subtitle {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: var(--brand);
+        color: #fff;
+        padding: 12px 18px;
+        font-weight: 700;
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        padding: 64px 0 30px;
+      }
+
+      .hero-single {
+        max-width: 820px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-copy {
+        padding: 42px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: #eef4ff;
+        color: var(--brand);
+        font-weight: 700;
+        font-size: 0.92rem;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: clamp(2.4rem, 5vw, 4.5rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+      }
+
+      .hero-copy p {
+        margin: 0 0 16px;
+        font-size: 1.08rem;
+        color: var(--muted);
+      }
+
+      .hero-copy strong {
+        color: var(--text);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        padding: 0 20px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .btn-secondary {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--text);
+      }
+
+      .section {
+        padding: 20px 0 24px;
+      }
+
+      .section-inner {
+        padding: 36px;
+      }
+
+      h2.section-title {
+        margin: 0 0 10px;
+        font-size: clamp(1.8rem, 3vw, 2.7rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      .section-lead {
+        margin: 0 0 28px;
+        color: var(--muted);
+        font-size: 1.04rem;
+        max-width: 760px;
+      }
+
+      .principle {
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .principle:first-of-type {
+        border-top: 0;
+        padding-top: 10px;
+      }
+
+      .principle h3 {
+        margin: 0 0 12px;
+        font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+        line-height: 1.25;
+      }
+
+      .principle p {
+        margin: 0 0 12px;
+        color: var(--muted);
+      }
+
+      .principle ul {
+        margin: 10px 0 12px;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .feature,
+      .callout {
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: #fff;
+      }
+
+      .feature h3,
+      .callout h3 {
+        margin: 0 0 10px;
+        font-size: 1.15rem;
+      }
+
+      .feature p,
+      .callout p,
+      .callout li {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .feature ul {
+        margin: 14px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .callout ul {
+        margin: 14px 0 0;
+        padding-left: 18px;
+      }
+
+      .quote {
+        margin-top: 22px;
+        padding: 22px 24px;
+        border-left: 5px solid var(--accent);
+        background: #fff9ed;
+        border-radius: 16px;
+        font-size: 1.05rem;
+      }
+
+      .meeting-contact-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+
+      .footnote {
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
+      .footer {
+        padding: 32px 0 88px;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .mobile-contact-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: none;
+        align-items: center;
+        justify-content: space-around;
+        gap: 8px;
+        background: rgba(15, 47, 47, 0.97);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 12px 10px calc(12px + env(safe-area-inset-bottom));
+        z-index: 9999;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.18);
+      }
+
+      .mobile-contact-bar a {
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        min-width: 88px;
+        text-align: center;
+      }
+
+      @media (max-width: 960px) {
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy,
+        .section-inner {
+          padding: 26px;
+        }
+
+        .hero {
+          padding-top: 28px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .mobile-contact-bar {
+          display: flex;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          width: min(var(--max), calc(100% - 20px));
+        }
+
+        .nav {
+          min-height: 64px;
+        }
+
+        .nav-cta,
+        .btn {
+          width: 100%;
+        }
+
+        .hero-actions,
+        .meeting-contact-actions {
+          flex-direction: column;
+        }
+
+        .footer {
+          padding-bottom: 108px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="brand">
+          <span class="brand-title">LA Menu Guy</span>
+          <span class="brand-subtitle">Andre Barber · Los Angeles</span>
+        </div>
+        <a
+          class="nav-cta"
+          href="#book-meeting"
+          onclick="trackContactClick('book_meeting_top_nav')"
+        >
+          Book a 30-minute meeting
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-single">
+          <div class="card hero-copy">
+            <div class="eyebrow">Los Angeles launch · Starting near major colleges</div>
+            <h1>5 Principles Every Restaurant Owner Should Live By</h1>
+            <p><strong>For operators who want control, better margins, and long-term growth.</strong></p>
+            <p>
+              Whether you are a new restaurant owner or an experienced operator, the five principles below will serve you well.
+            </p>
+            <p>
+              These principles aren’t new. They reflect how strong restaurants actually succeed when they have control over their business.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card section-inner">
+          <div class="principle">
+            <h3>1. <em>Never blindly hand control of your business to a third party—especially one with the power to decide how much of your revenue it keeps.</em></h3>
+            <p>
+              Allowing powerful, expensive third-party apps to control your business is a fundamentally flawed way to operate.
+            </p>
+            <p>As things exist now, they determine:</p>
+            <ul>
+              <li>how customers find you</li>
+              <li>how your menu is shown</li>
+              <li>how much you earn from each order—and when those funds reach your bank account</li>
+            </ul>
+            <p>
+              You must be the steward of your own ship. Good stewards embrace options that preserve operational control.
+            </p>
+          </div>
+
+          <div class="principle">
+            <h3>2. <em>Better value and higher margins drive success—not higher prices.</em></h3>
+            <p>
+              Better value and healthier margins create repeat demand more reliably than raising prices to absorb high commissions.
+            </p>
+            <p>
+              Raising prices to offset high commissions reduces demand. Customers order less, switch options, or stop ordering altogether.
+            </p>
+            <p>
+              Even modest increases matter: a 5% price increase can reduce demand by roughly 7–10%.[1]
+            </p>
+            <p>
+              Hoping customers will continue covering these costs is not a strategy.
+            </p>
+          </div>
+
+          <div class="principle">
+            <h3>3. <em>You don’t need to conquer the world. Conquer your local community.</em></h3>
+            <p>
+              Local traction matters. Strong restaurants win close to home by serving nearby customers who come back again and again.
+            </p>
+            <p>
+              Consistent business comes from nearby customers who order repeatedly. Broad exposure means little if it doesn’t convert into local, repeat demand.
+            </p>
+          </div>
+
+          <div class="principle">
+            <h3>4. <em>Your menu should help customers decide quickly and confidently.</em></h3>
+            <p>
+              If your menu is unclear, hard to navigate, or incomplete, customers hesitate—or choose something else.
+            </p>
+            <p>
+              A well-structured menu reduces friction, improves understanding, and leads to more confident decisions.
+            </p>
+          </div>
+
+          <div class="principle">
+            <h3>5. <em>Satisfied customers are your greatest promotional ally.</em></h3>
+            <p>The most reliable growth comes from:</p>
+            <ul>
+              <li>repeat customers</li>
+              <li>word-of-mouth</li>
+            </ul>
+            <p>
+              When customers consistently get good value and a smooth experience, they return—and they share their experience with others.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card section-inner">
+          <h2 class="section-title">Menus are the foundation.</h2>
+          <p class="section-lead">
+            Your menu is not just a list of items. It is how customers understand your food, decide what to order, and decide whether to come back.
+          </p>
+          <p class="section-lead" style="margin-bottom: 0;">
+            Menus should be structured, searchable, clear, and powerful—not trapped inside third-party apps that control how they are displayed and used.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card section-inner">
+          <h2 class="section-title">The Problem with the Current System</h2>
+          <p class="section-lead">
+            The current system is dominated by powerful third-party platforms that control how customers find restaurants, how menus are presented, and how revenue is distributed.
+          </p>
+          <p class="section-lead">
+            While doing this, they restrict access to customer data—preventing restaurants from ever communicating directly or building lasting customer relationships.
+          </p>
+          <p class="section-lead">
+            Third-party platforms charge restaurants up to <strong>30% per order</strong>. On top of that, customers absorb fees and markups of up to <strong>15%</strong>.
+          </p>
+          <p class="section-lead">
+            Add it up: as much as <strong>45 cents of every dollar</strong> in a transaction is being extracted—from both sides simultaneously.
+          </p>
+          <p class="section-lead">
+            And to top it off, they decide when you get paid—holding onto and investing your hard-earned revenue before transmitting it to you.
+          </p>
+
+          <div class="quote">
+            <strong>45% of the pie is not just greedy—it’s abusive.</strong>
+          </div>
+
+          <div class="grid-2" style="margin-top: 22px;">
+            <div class="callout">
+              <h3>What restaurants lose</h3>
+              <ul>
+                <li>Up to 30% commission on every order</li>
+                <li>Margin that could go to better food, staff, or growth</li>
+                <li>The ability to build customer relationships and promote their own deals directly</li>
+                <li>Control over when they receive money they have already earned</li>
+              </ul>
+            </div>
+            <div class="callout">
+              <h3>How this impacts customers</h3>
+              <ul>
+                <li>Pay up to 45% more before service fees, taxes, tips, and delivery fees</li>
+                <li>Forced to seek alternatives, including dining out less or cooking at home</li>
+                <li><strong>Net effect: customers pay far more—and receive far less in value.</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="what-we-are-building">
+        <div class="container card section-inner">
+          <h2 class="section-title">There is a better way.</h2>
+          <p class="section-lead">
+            Introducing a new platform built for the benefit of restaurants and their customers.
+          </p>
+          <p class="section-lead">
+            We are a new, scrappy platform entering the marketplace—and we are not here to control your business.
+          </p>
+          <p class="section-lead">
+            Our goal is to tilt the balance of power back in your favor by giving you a lower-cost option you can use alongside third-party apps or as an alternative.
+          </p>
+          <p class="section-lead">
+            More options create real competition—and competition works for you.
+          </p>
+
+          <h2 class="section-title" style="margin-top: 30px;">Built around these principles</h2>
+
+          <div class="grid-2" style="margin-top: 22px;">
+            <div class="feature">
+              <h3>1. Control.</h3>
+              <p><strong>You stay in control of your business.</strong></p>
+              <ul>
+                <li>You keep drastically more from each order</li>
+                <li>Your revenue flows directly to your bank account—we do not hold your money</li>
+                <li>You decide how to use the platform—and can use it alongside your existing third-party platforms</li>
+              </ul>
+            </div>
+
+            <div class="feature">
+              <h3>2. Value &amp; Margins.</h3>
+              <p><strong>Better economics by design.</strong></p>
+              <p>Replace artificially inflated prices with real prices—and give that value back to your customers.</p>
+              <ul>
+                <li>Reduce your in-app prices by up to <strong>20%</strong> while maintaining your margins</li>
+                <li>Eliminate the ~<strong>15%</strong> surcharge customers pay on third-party apps</li>
+                <li>Continue fulfilling orders through third-party delivery networks—while paying only a delivery fee, which can be passed to the customer</li>
+              </ul>
+            </div>
+
+            <div class="feature">
+              <h3>3. Local.</h3>
+              <p><strong>Win where your business actually wins.</strong></p>
+              <p>Yes, we are a local upstart—and we do not have national coverage.</p>
+              <p>But the reality is this: most of your customers already live and work nearby.</p>
+              <ul>
+                <li>The typical diner travels only about 3 miles for a meal</li>
+                <li>Roughly 85% of a restaurant’s customers come from within a 3–5 mile radius</li>
+              </ul>
+              <p>That is why we are focused on your local community—delivering immediate, meaningful impact where it actually matters.</p>
+              <p><strong>Win locally, and you win what matters.</strong></p>
+            </div>
+
+            <div class="feature">
+              <h3>4. Menu.</h3>
+              <p><strong>Your menu works the way it should.</strong></p>
+              <p>We present your menu in a structured format that preserves your brand identity while making it easier for customers to understand what you offer.</p>
+              <p><strong>Your menu is enhanced with intelligence that helps customers understand, compare, and choose with confidence.</strong></p>
+              <ul>
+                <li>Structured, searchable menu presentation</li>
+                <li>Clear organization and item visibility</li>
+                <li>Designed to help customers decide quickly and confidently</li>
+              </ul>
+            </div>
+
+            <div class="feature">
+              <h3>5. Customer Promotion &amp; Engagement.</h3>
+              <p><strong>Turn your customers into promoters—and own the relationship.</strong></p>
+              <p>Your customers can follow you on the platform and stay directly connected to your business.</p>
+              <ul>
+                <li>Your followers automatically receive your deals and updates</li>
+                <li>Promote offers and announcements directly—without additional fees</li>
+                <li>Customers can easily share your menu and deals with their friends—directly from our app</li>
+              </ul>
+              <p>Repeat, local, satisfied customers become your most effective form of promotion.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card section-inner">
+          <h2 class="section-title">Start local. Win what matters.</h2>
+          <p class="section-lead">
+            While we’re not launching at a national scale, we’re starting where it matters—your community.
+          </p>
+          <p class="section-lead">
+            We will market the platform locally, with a strong focus on areas in and around college campuses.
+          </p>
+          <p class="section-lead" style="margin-bottom: 0;">
+            <strong>Win locally, and you win what matters.</strong>
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="book-meeting">
+        <div class="container card section-inner">
+          <h2 class="section-title">Join us and take back control of your restaurant.</h2>
+          <p class="section-lead">
+            Call, text, or email—whatever works for you. I’ll come to you.
+          </p>
+
+          <div class="meeting-contact-actions">
+            <a
+              class="btn btn-primary"
+              href="tel:+12137124885"
+              onclick="trackContactClick('call_meeting_section')"
+            >
+              Call (213) 712-4885
+            </a>
+            <a
+              class="btn btn-secondary"
+              href="sms:+12137124885?body=Hi%20Andre%2C%20I%20want%20to%20learn%20more."
+              onclick="trackContactClick('sms_meeting_section')"
+            >
+              Text Andre
+            </a>
+            <a
+              class="btn btn-secondary"
+              href="mailto:helloandrebarber@gmail.com"
+              onclick="trackContactClick('email_meeting_section')"
+            >
+              Email Andre
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card section-inner">
+          <h2 class="section-title">A note from Andre Barber</h2>
+          <p class="section-lead">
+            I’m building a platform designed to give restaurants back control, protect their margins, and restore direct relationships with their customers.
+          </p>
+          <p class="section-lead">
+            Too many restaurants are working too hard while a 45% tax on every transaction quietly bleeds the industry dry.
+          </p>
+          <p class="section-lead">
+            Los Angeles has the talent, the culture, and the customer base to prove there’s a better way—but it starts with restaurants deciding to stop subsidizing a system that was never built for them.
+          </p>
+          <p class="section-lead" style="margin-bottom: 0;">
+            I’d like to meet you and show you what’s coming.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card section-inner footnote">
+          <p style="margin: 0;">
+            <strong>[1]</strong> Andreyeva, Tatiana; Long, Michael W.; Brownell, Kelly D.
+            <em>The Impact of Food Prices on Consumption: A Systematic Review of Research on the Price Elasticity of Demand for Food.</em>
+            American Journal of Public Health, 2010.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> LA Menu Guy</div>
+        <div>Los Angeles, California · Early restaurant introductions underway</div>
+      </div>
+    </footer>
+
+    <div class="mobile-contact-bar" id="mobile-contact-bar">
+      <a
+        href="tel:+12137124885"
+        onclick="trackContactClick('call_mobile_bar')"
+      >
+        📞 Call
+      </a>
+      <a
+        href="sms:+12137124885?body=Hi%20Andre%2C%20I%20want%20to%20get%20my%20restaurant%20listed."
+        onclick="trackContactClick('sms_mobile_bar')"
+      >
+        💬 Text
+      </a>
+      <a
+        href="mailto:helloandrebarber@gmail.com"
+        onclick="trackContactClick('email_mobile_bar')"
+      >
+        ✉️ Email
+      </a>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      function trackContactClick(action) {
+        try {
+          if (typeof window.gtag === "function") {
+            window.gtag("event", action, {
+              event_category: "contact",
+              event_label: action,
+              page_location: window.location.href,
+            });
+          } else {
+            console.log("Tracked click:", action);
+          }
+        } catch (error) {
+          console.warn("Tracking error:", error);
+        }
+      }
+    </script>
+  </body>
+</html>
